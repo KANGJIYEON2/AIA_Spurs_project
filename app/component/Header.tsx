@@ -8,6 +8,8 @@ import Image from "next/image";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { signIn, signOut, useSession } from "next-auth/react";
+import MenuItem from "@mui/material/MenuItem";
 
 const Item = styled(Box)(() => ({
   backgroundColor: "#001B3F",
@@ -15,6 +17,7 @@ const Item = styled(Box)(() => ({
 }));
 
 const Header = () => {
+  const { data: session } = useSession();
   return (
     <Grid sx={{ bgcolor: "#001B3F" }} paddingRight={2}>
       <Stack
@@ -63,13 +66,11 @@ const Header = () => {
             </Typography>
           </Stack>
         </Item>
-        <Item>
-          <Typography sx={{ fontSize: 14 }} color="#fafafa" align="right">
-            <Link color="#fafafa" href="/login" underline="none">
-              LOGIN
-            </Link>
+        <MenuItem onClick={() => (session ? signOut() : signIn())}>
+          <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
+            {session ? "Logout" : "Login"}
           </Typography>
-        </Item>
+        </MenuItem>
       </Stack>
     </Grid>
   );
