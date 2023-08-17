@@ -23,7 +23,7 @@ const Header = () => {
         alignItems="center"
         spacing={{ xs: 1, md: 10 }}>
         <Item>
-          <Link color="#fafafa" href="/" underline="none">
+          <Link href="/">
             <Image src="/logo.png" alt="Partner Logo" width={80} height={64} />
           </Link>
         </Item>
@@ -40,24 +40,24 @@ const Header = () => {
               </Link>
             </Typography>
             <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-              <Link color="#fafafa" href="#" underline="none">
+              <Link color="#fafafa" href="/event" underline="none">
                 EVENT
               </Link>
             </Typography>
             <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-              <Link color="#fafafa" href="#" underline="none">
+              <Link color="#fafafa" href="/allaboutspurs" underline="none">
                 ALL ABOUT
                 <br />
                 SPURS
               </Link>
             </Typography>
             <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-              <Link color="#fafafa" href="#" underline="none">
+              <Link color="#fafafa" href="/aiaonebillion" underline="none">
                 WITH AIA
               </Link>
             </Typography>
             <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-              <Link color="#fafafa" href="#" underline="none">
+              <Link color="#fafafa" href="/mypag" underline="none">
                 MY PAGE
               </Link>
             </Typography>
@@ -65,7 +65,7 @@ const Header = () => {
         </Item>
         <Item>
           <Typography sx={{ fontSize: 14 }} color="#fafafa" align="right">
-            <Link color="#fafafa" href="#" underline="none">
+            <Link color="#fafafa" href="/login" underline="none">
               LOGIN
             </Link>
           </Typography>

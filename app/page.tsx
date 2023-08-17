@@ -1,29 +1,56 @@
 "use client";
 
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import Link from "@mui/material/Link";
+
 export default function Home() {
   return (
-    <div className="container hero">
-      <div className="content">
-        <span>discover</span>
-        <h1>
-          Sweet Donut <br></br> Heaven
-        </h1>
-        <hr />
-        <p>
-          Our Donut Collection Offers a Mouthwatering Array of Flavors,
-          Toppings, and Shapes for Every Craving and Occasion.
-        </p>
-        <a href="#" className="btn">
-          download app
-        </a>
-      </div>
-
-      <div className="content-img">
-        <img
-          src="https://plus.unsplash.com/premium_photo-1663840175440-793153f1f0a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
-          alt="bg image"
-        />
-      </div>
-    </div>
+    <Container maxWidth="md">
+      <Box sx={{ m: 5, bgcolor: "#cfe8fc", height: "100vh" }}>
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h4">이벤트</Typography>
+        </Box>
+        <Box
+          sx={{
+            p: 0,
+            width: "100%",
+            height: "300px",
+          }}>
+          <Link href="/event">
+            <Image
+              src="/main_event.png"
+              alt="Partner Logo"
+              width={770}
+              height={300}
+            />
+          </Link>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h4">공지사항</Typography>
+        </Box>
+        <Box
+          sx={{
+            border: "1px dashed grey",
+            width: "100%",
+            height: "200px",
+          }}>
+          <Typography variant="h4">공지사항 들어갈 공간</Typography>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h4">SPURS' PICK</Typography>
+        </Box>
+        <Box
+          sx={{
+            border: "1px dashed grey",
+            width: "100%",
+            height: "200px",
+          }}>
+          <Typography variant="h4">spurs's pick 들어갈 공간</Typography>
+        </Box>
+      </Box>
+    </Container>
   );
 }
