@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
@@ -48,13 +48,13 @@ const Mypage = () => {
       <Box sx={{ m: 5 }}>
         <List sx={style} component="nav" aria-label="mailbox folders">
           <Divider />
-          <ListItem button>
+          <ListItemButton href="https://aiaspurs.com/kr/pic">
             <ListItemText primary="개인정보 수집∙이용동의 및 처리위탁(선택)" />
-          </ListItem>
+          </ListItemButton>
           <Divider />
-          <ListItem button divider>
+          <ListItemButton href="https://aiaspurs.com/kr/marketing">
             <ListItemText primary="마케팅을 위한 광고성 정보 수신동의(선택)" />
-          </ListItem>
+          </ListItemButton>
         </List>
       </Box>
       <Box sx={{ m: 5 }}>

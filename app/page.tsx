@@ -9,7 +9,7 @@ import Link from "@mui/material/Link";
 export default function Home() {
   return (
     <Container maxWidth="md">
-      <Box sx={{ m: 5, bgcolor: "#cfe8fc", height: "100vh" }}>
+      <Box sx={{ m: 5, height: "100vh" }}>
         <Box sx={{ p: 2 }}>
           <Typography variant="h4">이벤트</Typography>
         </Box>

@@ -36,7 +36,7 @@ export default function Footer() {
             underline="none">
             개인정보처리방침 <br />
           </Link>
-          <Link color="#fafafa" href="#" underline="none">
+          <Link color="#fafafa" href="/login2" underline="none">
             관리자페이지
           </Link>
         </Typography>
