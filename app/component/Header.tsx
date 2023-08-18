@@ -60,7 +60,7 @@ const Header = () => {
               </Link>
             </Typography>
             <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-              <Link color="#fafafa" href="/mypag" underline="none">
+              <Link color="#fafafa" href="/mypage" underline="none">
                 MY PAGE
               </Link>
             </Typography>
@@ -68,7 +68,7 @@ const Header = () => {
         </Item>
         <MenuItem onClick={() => (session ? signOut() : signIn())}>
           <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
-            {session ? "Logout" : "Login"}
+            {session ? "LOGOUT" : "LOGIN"}
           </Typography>
         </MenuItem>
       </Stack>

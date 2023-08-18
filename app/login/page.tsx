@@ -6,7 +6,7 @@ import Image from "next/image";
 import "../globals.css";
 import Button from "@mui/material/Button";
 
-function Login() {
+export default function Login() {
   return (
     <Box sx={{ m: 5, height: "75vh" }}>
       <Button
@@ -17,5 +17,3 @@ function Login() {
     </Box>
   );
 }
-
-export default Login;

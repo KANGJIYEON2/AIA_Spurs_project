@@ -27,10 +27,7 @@ export default function Footer() {
       </Grid>
       <Grid item xs={4}>
         <Typography sx={{ fontSize: 14 }} color="#fafafa" align="right">
-          <Link
-            color="#fafafa"
-            href="https://aiaspurs.com/kr/terms"
-            underline="none">
+          <Link color="#fafafa" href="/terms" underline="none">
             서비스 이용 약관 <br />
           </Link>
           <Link
