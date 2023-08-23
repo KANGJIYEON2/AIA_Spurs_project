@@ -2,7 +2,7 @@
 
 import React from "react";
 import Mypage from "./Mypage";
-import Login from "../login/page";
+import Login from "../api/auth/login/page";
 import { useSession } from "next-auth/react";
 
 const page: React.FC = () => {

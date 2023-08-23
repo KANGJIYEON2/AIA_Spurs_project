@@ -11,7 +11,7 @@ const handler = NextAuth({
   ],
 
   pages: {
-    signIn: "/login",
+    signIn: "/api/auth/login",
   },
 });
 
