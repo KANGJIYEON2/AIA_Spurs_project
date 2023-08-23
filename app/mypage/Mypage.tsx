@@ -11,6 +11,7 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid";
 
 const style = {
   width: "100%",
@@ -22,7 +23,7 @@ const Mypage = () => {
   const { data: session } = useSession();
   const userProfileImg = session?.user?.image as string;
   return (
-    <Container maxWidth="md">
+    <Container minwidth="sm" maxwidth="xl">
       <Typography variant="h4" sx={{ marginLeft: 5, marginTop: 5 }}>
         프로필
       </Typography>
@@ -46,16 +47,22 @@ const Mypage = () => {
         개인정보수집처리동의
       </Typography>
       <Box sx={{ m: 5 }}>
-        <List sx={style} component="nav" aria-label="mailbox folders">
-          <Divider />
-          <ListItemButton href="https://aiaspurs.com/kr/pic">
-            <ListItemText primary="개인정보 수집∙이용동의 및 처리위탁(선택)" />
-          </ListItemButton>
-          <Divider />
-          <ListItemButton href="https://aiaspurs.com/kr/marketing">
-            <ListItemText primary="마케팅을 위한 광고성 정보 수신동의(선택)" />
-          </ListItemButton>
-        </List>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center">
+          <List sx={style} component="nav" aria-label="mailbox folders">
+            <Divider />
+            <ListItemButton href="https://aiaspurs.com/kr/pic">
+              <ListItemText primary="개인정보 수집∙이용동의 및 처리위탁(선택)" />
+            </ListItemButton>
+            <Divider />
+            <ListItemButton href="https://aiaspurs.com/kr/marketing">
+              <ListItemText primary="마케팅을 위한 광고성 정보 수신동의(선택)" />
+            </ListItemButton>
+          </List>
+        </Grid>
       </Box>
       <Box sx={{ m: 5 }}>
         <Button onClick={() => (session ? signOut() : signIn())}>

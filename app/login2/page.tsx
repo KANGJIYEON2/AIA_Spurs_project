@@ -11,9 +11,7 @@ import Grid from "@mui/material/Grid";
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#fafafa",
       main: "#001B3F",
-      dark: "#001B3F",
       contrastText: "#fafafa",
     },
   },
@@ -39,7 +37,7 @@ export default function Login2() {
   };
 
   return (
-    <Container maxWidth="md">
+    <Container minwidth="sm" maxwidth="xl">
       <Grid
         container
         display="flex"
@@ -61,6 +59,7 @@ export default function Login2() {
           <Box sx={{ marginTop: 1, marginBottom: 1 }}>
             <TextField
               required
+              type="password"
               label="PASSWORD"
               name="password"
               variant="outlined"

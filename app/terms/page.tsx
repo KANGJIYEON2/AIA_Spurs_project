@@ -8,12 +8,12 @@ import "../globals.css";
 
 export default function terms() {
   return (
-    <Container maxWidth="md">
+    <Container minwidth="sm" maxwidth="xl">
       <Box sx={{ m: 5, p: 2, height: "110vh" }}>
-        <Typography color="error" variant="h5">
+        <Typography color="error" variant="h5" sx={{ fontWeight: "bold" }}>
           Term and Conditions
         </Typography>
-        <Typography variant="subtitle2">
+        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           AIA Spurs Hub 서비스 이용약관
         </Typography>
         <br />
@@ -32,7 +32,7 @@ export default function terms() {
           <li>제12조 (기타사항)</li>
         </ul>
         <br />
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body2" gutterBottom sx={{ fontWeight: "bold" }}>
           제 1조 (목적)
         </Typography>
         <Typography variant="body2" gutterBottom>
@@ -42,7 +42,7 @@ export default function terms() {
           권리∙의무 및 책임사항, 기타 필요한 사항을 규정하는 데 그 목적이
           있습니다.
         </Typography>
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body2" gutterBottom sx={{ fontWeight: "bold" }}>
           제 2조 (정의)
         </Typography>
         <Typography variant="body2" gutterBottom>
@@ -67,7 +67,7 @@ export default function terms() {
           이용계약을 체결하고, 회사가 제공하는 Spurs Hub를 이용하는 자를
           의미합니다.
         </Typography>
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body2" gutterBottom sx={{ fontWeight: "bold" }}>
           제 3조 (약관의 게시와 개정)
         </Typography>
         <Typography variant="body2" gutterBottom>
@@ -94,7 +94,7 @@ export default function terms() {
           회사에 명시적으로 거부의사를 표명하지 않을 경우에는 개정된 약관에
           동의하는 것으로 간주합니다.
         </Typography>
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body2" gutterBottom sx={{ fontWeight: "bold" }}>
           제 4조 (회원 자격 부여)
         </Typography>
         <Typography variant="body2" gutterBottom>

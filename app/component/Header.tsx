@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import MenuItem from "@mui/material/MenuItem";
+import "../globals.css";
 
 const Item = styled(Box)(() => ({
   backgroundColor: "#001B3F",
@@ -19,7 +20,7 @@ const Item = styled(Box)(() => ({
 const Header = () => {
   const { data: session } = useSession();
   return (
-    <Grid sx={{ bgcolor: "#001B3F" }} paddingRight={2}>
+    <Grid className="Header" sx={{ bgcolor: "#001B3F" }} paddingRight={2}>
       <Stack
         direction="row"
         justifyContent="space-between"

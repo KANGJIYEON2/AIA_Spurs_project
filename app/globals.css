@@ -10,6 +10,14 @@
   left: 40%;
 }
 
+.Header {
+  position: relative;
+}
+
+.Tab {
+  position: relative;
+}
+
 .Footer {
   align-items: center;
   position: relative;
