@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Paper,
   Table,
@@ -19,10 +19,10 @@ const Contents = () => {
     { id: "ETC", name: "관련설명" },
   ];
 
-  const handlechangepage = (event, newpage) => {
-    pagechange(newpage);
+  const handlechangepage = (event:any, newpage:any) => {
+     pagechange(newpage);
   };
-  const handleRowsPerPage = (event) => {
+  const handleRowsPerPage = (event:any) => {
     rowperpagechange(+event.target.value);
     pagechange(0);
   };

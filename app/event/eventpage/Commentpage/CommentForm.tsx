@@ -1,10 +1,10 @@
 import { Height } from "@mui/icons-material";
 import { useState } from "react";
 
-const CommentForm = ({handleSubmit ,submitLabel}) => {
+const CommentForm = ({handleSubmit,submitLabel}) => {
   const [text, setText] = useState("");
   const isTextareaDisabled = text.length === 0 ;
-  const onsubmit = (event) => {
+  const onsubmit = (event:any) => {
     event.preventDefault();
     handleSubmit(text);
     setText("");

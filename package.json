@@ -25,7 +25,7 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
     "gray-matter": "^4.0.3",
-    "next": "13.4.13",
+    "next": "^13.4.13",
     "next-auth": "^4.23.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
@@ -40,5 +40,8 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1"
-  }
+  },
+  "browser": {
+    "fs": false
+}
 }

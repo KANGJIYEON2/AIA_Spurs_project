@@ -18,7 +18,7 @@ export const metadata = {
 const RootLayout: React.FC<Props> = ({ children, session }) => {
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <SessionProvider session={session}>
           <Header />
           {children}

@@ -7,8 +7,8 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Event from './eventpage/page';
-import Faqpage from './faqlist/page';
-import Notice from './notice/page';
+import Faqpage from '../faqlist/page';
+import Notice from '../notice/page';
 export default function EventTabs() {
   const [value, setValue] = React.useState('1');
 

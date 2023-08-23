@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
+import adminpage from "../page";
 
 const theme = createTheme({
   palette: {
@@ -71,6 +72,7 @@ export default function Login2() {
             <Box>
               <Button
                 type="submit"
+                href="/admin"
                 variant="contained"
                 sx={{ width: 225, height: 55 }}>
                 LOGIN

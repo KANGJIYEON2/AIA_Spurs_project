@@ -19,10 +19,10 @@ const Userpage = () => {
     { id: "adress", name: "Adress" },
   ];
 
-  const handlechangepage = (event, newpage) => {
+  const handlechangepage = (event:any, newpage:any) => {
     pagechange(newpage);
   };
-  const handleRowsPerPage = (event) => {
+  const handleRowsPerPage = (event:any) => {
     rowperpagechange(+event.target.value);
     pagechange(0);
   };

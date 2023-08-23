@@ -17,17 +17,8 @@ import CardActions from '@mui/material/CardActions';
 import { Grid,Box, Table } from "@mui/material";
 import { BorderAll, Height } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-import Comments from "./Commentpage/Comments";
+import Comments from "./commentpage/Comments";
 
-type FormValues = {
-  name:string,
-  phoneNum:string,
-  gender:any,
-  adress:string,
-  reason1:string,
-  reason2:string,
-  reason3:string
-}
 
       
 export default function Event() {
@@ -37,11 +28,13 @@ const form = useForm();
     handleSubmit,
     formState: { isSubmitting, isSubmitted, errors },
   } = form;
- 
-const onsubmit = (data:FormValues) => {
-  console.log(data)
-}
 
+
+ 
+const onsubmit = (FormValues: any) => {
+  console.log(FormValues)
+}
+  
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -119,11 +112,13 @@ const onsubmit = (data:FormValues) => {
         },
       },
     }}>
+ 
           <DialogTitle>이벤트 참여하기</DialogTitle>
           <DialogContent>
             <DialogContentText>
               이벤트 당첨시 경품 지급 안내를 위해 정확한 정보를 기입해 주세요.
             </DialogContentText>
+            <div>
             <p> <FormControlLabel required control={<Checkbox />} label="[필수] 이벤트를 위한 개인정보 수집∙이용 동의 및 처리 위탁 안내" /><br />
             AIA생명보험 주식회사(이하 ‘회사’)가 이벤트 진행 등을 목적으로 아래와 같이 본인의 개인정보를 수집·이용하는 것에 동의합니다.</p>
             <Box sx={{ border: 1}} style={{maxHeight: 80, overflow: 'auto' }}>
@@ -164,6 +159,7 @@ const onsubmit = (data:FormValues) => {
             ※ 귀하는 본 동의를 거부하실 수 있습니다. 다만, 동의를 거부할 경우 이벤트 참가 및 경품제공 등 이벤트 관련 업무 처리가 제한될 수 있습니다.
             </p>
   
+  </div>
           <Box component="form" onSubmit={handleSubmit(onsubmit)}>
             <TextField
               autoFocus
@@ -200,7 +196,7 @@ const onsubmit = (data:FormValues) => {
               name="gender"
               value="man"
               className="form-check-input"
-              id="pizza"
+              id="man"
             />{' '}
             남
           </label>
@@ -211,7 +207,7 @@ const onsubmit = (data:FormValues) => {
               name="gender"
               value="woman"
               className="form-check-input"
-              id="burger"
+              id="woman"
             />{' '}
             여
           </label>

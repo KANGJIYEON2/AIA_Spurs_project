@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Paper,
   Table,
@@ -9,22 +9,23 @@ import {
   TableCell,
   TableBody,
   TablePagination,
+  IconButton,
 } from "@mui/material";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Events = () => {
+
+
+const Faqlists = () => {
   const columns = [
     { id: "id", name: "ID" },
-    { id: "name", name: "Name" },
-    { id: "phoneNum", name: "Phone" },
-    { id: "gender", name: "성별" },
-    { id: "adress", name: "Adress" },
-    { id: "reason1", name: "당첨이유1" },
-    { id: "reason2", name: "당첨이유2" },
-    { id: "reason3", name: "당첨이유3" },
+    { id: "title", name: "title" },
+    { id: "explain", name: "explain" },
+    { id: "ETC", name: "관련설명" },
   ];
 
   const handlechangepage = (event:any, newpage:any) => {
-    pagechange(newpage);
+     pagechange(newpage);
   };
   const handleRowsPerPage = (event:any) => {
     rowperpagechange(+event.target.value);
@@ -34,8 +35,10 @@ const Events = () => {
   const [rows, rowchange] = useState([]);
   const [page, pagechange] = useState(0);
   const [rowperpage, rowperpagechange] = useState(5);
+  const [openModule, setOpenModule] = React.useState(false);
+
   useEffect(() => {
-    fetch("http://localhost:8000/events")
+    fetch("http://localhost:8000/faqlist")
       .then((resp) => {
         return resp.json();
       })
@@ -49,14 +52,17 @@ const Events = () => {
 
   return (
     <div style={{ width: "70%", marginLeft: "6%" }}>
-      <h3>이벤트정보</h3>
+      <h3>FAQ리스트</h3>
       <Paper sx={{ width: "90%" }}>
         <TableContainer sx={{ maxHeight: 450 }}>
           <Table stickyHeader>
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
-                  <TableCell key={column.id}>{column.name}</TableCell>
+                  
+                  <TableCell key={column.id}>{column.name}
+            
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
@@ -70,13 +76,14 @@ const Events = () => {
                         {columns &&
                           columns.map((column, i) => {
                             let value = row[column.id];
-                            return <TableCell key={value}>{value}</TableCell>;
+                            return <TableCell key={value}>{value} </TableCell>;
                           })}
                       </TableRow>
                     );
                   })}
             </TableBody>
           </Table>
+          
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
@@ -91,4 +98,4 @@ const Events = () => {
     </div>
   );
 };
-export default Events;
+export default Faqlists;
