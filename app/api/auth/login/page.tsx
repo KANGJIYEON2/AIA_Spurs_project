@@ -60,7 +60,7 @@ export default function Login() {
             }>
             <Image
               src="/login_google.png"
-              alt="login"
+              alt="login_google"
               width={200}
               height={50}
             />
@@ -71,7 +71,12 @@ export default function Login() {
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
             }>
-            <Image src="/login_naver.png" alt="login" width={200} height={50} />
+            <Image
+              src="/login_naver.png"
+              alt="login_naver"
+              width={200}
+              height={50}
+            />
           </Button>
         </Box>
         <Box>
@@ -79,7 +84,12 @@ export default function Login() {
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
             }>
-            <Image src="/login_kakao.png" alt="login" width={200} height={50} />
+            <Image
+              src="/login_kakao.png"
+              alt="login_kakao"
+              width={200}
+              height={50}
+            />
           </Button>
         </Box>
       </Grid>

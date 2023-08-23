@@ -13,10 +13,9 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
+import { routes } from "./routes";
 
-const pages = ["HOME", "EVENT", "ALL ABOUT SPURS", "WITH AIA", "MY PAGE"];
-
-const links = ["/", "/event", "/allaboutspurs", "/withaia", "/mypage"];
+const paths = routes;
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#001B3F",
@@ -122,9 +121,13 @@ const Header = () => {
           sx={{
             display: { xs: "block", md: "none" },
           }}>
-          {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
+          {paths.map(({ name, link }) => (
+            <MenuItem>
+              <Link
+                href={link}
+                style={{ textDecoration: "none", color: "#001B3F" }}>
+                <Typography textAlign="center">{name}</Typography>
+              </Link>
             </MenuItem>
           ))}
         </Menu>
