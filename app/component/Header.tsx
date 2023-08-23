@@ -132,7 +132,14 @@ const Header = () => {
                 href={link}
                 style={{ textDecoration: "none", color: "#001B3F" }}
               >
-                <Typography textAlign="center">{name}</Typography>
+                <Typography
+                  textAlign="center"
+                  sx={{
+                    fontSize: 12,
+                  }}
+                >
+                  {name}{" "}
+                </Typography>
               </Link>
             </MenuItem>
           ))}
