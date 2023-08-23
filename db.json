@@ -1,0 +1,104 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "홍길동",
+      "phoneNum": "010-1234-1234",
+      "adress": "서울시"
+    },
+    {
+      "id": 2,
+      "name": "김아무개",
+      "phoneNum": "010-1232-1134",
+      "adress": "경기도"
+    },
+    {
+      "id": 3,
+      "name": "김수한무",
+      "phoneNum": "010-1332-1104",
+      "adress": "서울시"
+    },
+    {
+      "id": 4,
+      "name": "박보검",
+      "phoneNum": "010-1432-1134",
+      "adress": "서울시"
+    },
+    {
+      "id": 5,
+      "name": "김사람",
+      "phoneNum": "010-1232-1534",
+      "adress": "서울시"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name":"홍길동",
+      "phoneNum":"010-1234-1234",
+      "gender":"man",
+      "adress" : "서울시",
+      "reason1":"이유1",
+      "reason2":"이유2",
+      "reason3":"이유3"
+    },
+    {
+      "id": 3,
+      "name": "김수한무",
+      "phoneNum": "010-1332-1104",
+      "gender":"man",
+      "adress": "서울시",
+      "reason1":"이유1",
+      "reason2":"이유2",
+      "reason3":"이유3"
+    },
+    {
+      "id": 5,
+      "name": "김사람",
+      "phoneNum": "010-1232-1534",
+      "gender":"woman",
+      "adress": "서울시",
+      "reason1":"이유1",
+      "reason2":"이유2",
+      "reason3":"이유3"
+    }
+  ],
+  "contents": [
+    {
+      "id": "allaboutspurs",
+      "name": "SPURS 선수들의 특별영상",
+      "explain": "SPURS 선수들의 특별영상 모음",
+      "ETC": "영상LIST"
+    },
+    {
+      "id": "allaboutspurs",
+      "name": "SPURS 선수들의 건강팁",
+      "explain": "SPURS 선수들의 건강팁 모음",
+      "ETC": "사진LIST"
+    },
+    {
+      "id": "allaboutspurs",
+      "name": "버추얼스타디움투어",
+      "explain": "버추얼 스타디움투어",
+      "ETC": "홈페이지url"
+    },
+    {
+      "id": "withaia",
+      "name": "AIA ONE BILLION",
+      "explain": "AIA ONE BILLION 설명",
+      "ETC": "홈페이지url, 영상"
+    },
+    {
+      "id": "withaia",
+      "name": "SPURS & AIA 파트너십 스토리",
+      "explain": "SPURS & AIA 파트너십 스토리",
+      "ETC": "홈페이지url, 영상"
+    },
+    {
+      "id": "Event",
+      "name": "Eventpage",
+      "explain": "이벤트 페이지관리",
+      "ETC": "이벤트 정보"
+    }
+  ]
+}
