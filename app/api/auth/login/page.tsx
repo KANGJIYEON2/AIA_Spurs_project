@@ -17,24 +17,38 @@ export default function Login() {
         height: "80vh",
         width: "100%",
       }}>
+      <Grid>
+        <Image
+          src="/logo_color.jpg"
+          alt="Logo color"
+          width={"0"}
+          height={"0"}
+          sizes="30vw,"
+          style={{ width: "100%", height: "100%" }}
+        />
+      </Grid>
       <Grid
         sx={{
-          m: 1,
+          marginBottom: 3,
         }}>
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#001B3F" }}>
-          카카오톡으로 로그인하기
+          AIA - SPURS에 오신 것을 환영합니다!
         </Typography>
       </Grid>
       <Grid
         border="1px solid"
         borderColor="#001B3F"
         container
+        direction="column"
         justifyContent="center"
         alignItems="center"
         sx={{
-          height: "15%",
+          height: "20%",
           width: "20%",
         }}>
+        <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
+          카카오톡으로 계속하기
+        </Typography>
         <Button
           onClick={() => signIn("kakao", { redirect: true, callbackUrl: "/" })}>
           <Image src="/login.png" alt="login" width={200} height={50} />
