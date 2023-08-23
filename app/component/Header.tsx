@@ -67,12 +67,14 @@ const Header = () => {
           direction="row"
           justifyContent="space-around"
           alignItems="center"
-          spacing={{ xs: 3, md: 4, lg: 4, xl: 4 }}>
-          {DisplayMenu("HOME", "/")}
+          spacing={{ xs: 3, md: 4, lg: 4, xl: 4 }}
+        >
+          {paths.map(({ name, link }) => DisplayMenu(name, link))}
+          {/* {DisplayMenu("HOME", "/")}
           {DisplayMenu("EVENT", "/event")}
           {DisplayMenu("ALL ABOUT SPURS", "/allaboutspurs")}
           {DisplayMenu("WITH AIA", "/withaia")}
-          {DisplayMenu("MY PAGE", "/mypage")}
+          {DisplayMenu("MY PAGE", "/mypage")} */}
         </Stack>
       </Item>
     </Grid>
@@ -96,12 +98,14 @@ const Header = () => {
       container
       direction="row"
       justifyContent="space-between"
-      alignItems="center">
+      alignItems="center"
+    >
       <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
         <IconButton
           size="large"
           onClick={handleOpenNavMenu}
-          sx={{ color: "#fafafa" }}>
+          sx={{ color: "#fafafa" }}
+        >
           <MenuIcon />
         </IconButton>
         <Menu
@@ -120,12 +124,14 @@ const Header = () => {
           onClose={handleCloseNavMenu}
           sx={{
             display: { xs: "block", md: "none" },
-          }}>
+          }}
+        >
           {paths.map(({ name, link }) => (
             <MenuItem>
               <Link
                 href={link}
-                style={{ textDecoration: "none", color: "#001B3F" }}>
+                style={{ textDecoration: "none", color: "#001B3F" }}
+              >
                 <Typography textAlign="center">{name}</Typography>
               </Link>
             </MenuItem>
