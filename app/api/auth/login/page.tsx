@@ -14,7 +14,7 @@ export default function Login() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        height: "82vh",
+        height: "80vh",
         width: "100%",
       }}>
       <Grid
