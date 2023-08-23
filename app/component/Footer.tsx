@@ -31,7 +31,7 @@ export default function Footer() {
           "개인정보처리방침",
           "https://www.aia.co.kr/ko/index/pi-processing.html"
         )}
-        {Links("관리자페이지", "/login2")}
+        {Links("관리자페이지", "/admin/login2")}
       </Typography>
     </Grid>
   );
