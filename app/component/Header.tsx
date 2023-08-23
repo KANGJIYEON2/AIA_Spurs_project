@@ -10,6 +10,13 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+
+const pages = ["HOME", "EVENT", "ALL ABOUT SPURS", "WITH AIA", "MY PAGE"];
+
+const links = ["/", "/event", "/allaboutspurs", "/withaia", "/mypage"];
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#001B3F",
@@ -32,8 +39,20 @@ const DisplayMenu = (menu: string, path: string) => {
 const Header = () => {
   const { data: session } = useSession();
 
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   const DisplayLogo = (
-    <Grid item xs={2}>
+    <Grid item xs={2} sx={{ flexGrow: 1 }}>
       <Item>
         <Link href="/">
           <Image src="/logo.png" alt="Partner Logo" width={80} height={64} />
@@ -43,7 +62,7 @@ const Header = () => {
   );
 
   const DisplayItems = (
-    <Grid item xs={8}>
+    <Grid item xs={8} sx={{ display: { xs: "none", md: "flex" } }}>
       <Item>
         <Stack
           direction="row"
@@ -61,10 +80,10 @@ const Header = () => {
   );
 
   const DisplayLogin = (
-    <Grid item xs={2}>
+    <Grid item xs={2} sx={{ flexGrow: 1 }} justifyContent="flex-end">
       <Item>
         <MenuItem onClick={() => (session ? signOut() : signIn())}>
-          <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
+          <Typography sx={{ fontSize: 14 }} color="#fafafa">
             {session ? "LOGOUT" : "LOGIN"}
           </Typography>
         </MenuItem>
@@ -76,10 +95,40 @@ const Header = () => {
     <Grid
       sx={{ bgcolor: "#001B3F" }}
       container
-      spacing={{ xs: 2, md: 3 }}
       direction="row"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center">
+      <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+        <IconButton
+          size="large"
+          onClick={handleOpenNavMenu}
+          sx={{ color: "#fafafa" }}>
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorElNav}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          open={Boolean(anchorElNav)}
+          onClose={handleCloseNavMenu}
+          sx={{
+            display: { xs: "block", md: "none" },
+          }}>
+          {pages.map((page) => (
+            <MenuItem key={page} onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">{page}</Typography>
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
       {DisplayLogo}
       {DisplayItems}
       {DisplayLogin}

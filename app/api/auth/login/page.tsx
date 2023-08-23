@@ -46,7 +46,7 @@ export default function Login() {
         alignItems="center"
         sx={{
           height: "40%",
-          width: "20%",
+          width: "300px",
         }}>
         <Box>
           <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
