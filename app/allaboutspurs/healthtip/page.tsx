@@ -44,11 +44,10 @@ export default function TextMobileStepper() {
   };
 
   return (
-    <Container className="tab" minwidth="sm" maxwidth="xl">
+    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
       <Box
         sx={{
           marginBottom: 20,
-          height: "70vh",
           bgcolor: "#9ee1f7",
           display: "flex",
           alignItems: "center",

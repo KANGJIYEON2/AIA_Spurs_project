@@ -8,8 +8,8 @@ import Link from "@mui/material/Link";
 
 export default function Home() {
   return (
-    <Container minwidth="sm" maxwidth="xl">
-      <Box sx={{ marginTop: 5, marginBottom: 30, height: "100vh" }}>
+    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
+      <Box sx={{ marginTop: 5, marginBottom: 30 }}>
         <Box sx={{ p: 2 }}>
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             이벤트

@@ -149,8 +149,7 @@ const Header = () => {
       spacing={{ xs: 2, md: 3 }}
       direction="row"
       justifyContent="center"
-      alignItems="center"
-    >
+      alignItems="center">
       {DisplayLogo}
       {DisplayItems}
       {DisplayLogin}

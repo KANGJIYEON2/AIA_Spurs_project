@@ -8,7 +8,7 @@ import "../globals.css";
 
 export default function terms() {
   return (
-    <Container minwidth="sm" maxwidth="xl">
+    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
       <Box sx={{ m: 5, p: 2, height: "110vh" }}>
         <Typography color="error" variant="h5" sx={{ fontWeight: "bold" }}>
           Term and Conditions

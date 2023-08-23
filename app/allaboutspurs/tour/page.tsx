@@ -12,8 +12,8 @@ import "../../globals.css";
 
 export default function Tour() {
   return (
-    <Container className="tab" minwidth="sm" maxwidth="xl">
-      <Box sx={{ m: 10, height: "70vh" }} display="flex">
+    <Container className="tab" sx={{ minWidth: "sm", maxWidth: "xl" }}>
+      <Box sx={{ m: 10 }} display="flex">
         <Grid
           container
           direction="column"

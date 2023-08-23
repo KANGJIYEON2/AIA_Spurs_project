@@ -37,7 +37,7 @@ export default function Login2() {
   };
 
   return (
-    <Container minwidth="sm" maxwidth="xl">
+    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
       <Grid
         container
         display="flex"

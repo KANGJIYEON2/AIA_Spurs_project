@@ -21,15 +21,15 @@ export default function Login() {
         <Image
           src="/logo_color.jpg"
           alt="Logo color"
-          width={"0"}
-          height={"0"}
-          sizes="30vw,"
-          style={{ width: "100%", height: "100%" }}
+          width={260}
+          height={200}
+          // sizes="30vw,"
+          // style={{ width: "100%", height: "100%" }}
         />
       </Grid>
       <Grid
         sx={{
-          marginBottom: 3,
+          marginBottom: 7,
         }}>
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#001B3F" }}>
           AIA - SPURS에 오신 것을 환영합니다!
