@@ -38,6 +38,7 @@ export default function Login() {
       <Grid
         border="1px solid"
         borderColor="#001B3F"
+        borderRadius="16px"
         container
         direction="column"
         justifyContent="center"
