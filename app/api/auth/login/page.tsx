@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function Login() {
   return (
@@ -21,15 +22,15 @@ export default function Login() {
         <Image
           src="/logo_color.jpg"
           alt="Logo color"
-          width={260}
-          height={200}
+          width={150}
+          height={120}
           // sizes="30vw,"
           // style={{ width: "100%", height: "100%" }}
         />
       </Grid>
       <Grid
         sx={{
-          marginBottom: 7,
+          marginBottom: 4,
         }}>
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#001B3F" }}>
           AIA - SPURS에 오신 것을 환영합니다!
@@ -44,16 +45,43 @@ export default function Login() {
         justifyContent="center"
         alignItems="center"
         sx={{
-          height: "20%",
+          height: "40%",
           width: "20%",
         }}>
-        <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
-          카카오톡으로 계속하기
-        </Typography>
-        <Button
-          onClick={() => signIn("kakao", { redirect: true, callbackUrl: "/" })}>
-          <Image src="/login.png" alt="login" width={200} height={50} />
-        </Button>
+        <Box>
+          <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
+            카카오톡으로 계속하기
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            onClick={() =>
+              signIn("kakao", { redirect: true, callbackUrl: "/" })
+            }>
+            <Image
+              src="/login_google.png"
+              alt="login"
+              width={200}
+              height={50}
+            />
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            onClick={() =>
+              signIn("kakao", { redirect: true, callbackUrl: "/" })
+            }>
+            <Image src="/login_naver.png" alt="login" width={200} height={50} />
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            onClick={() =>
+              signIn("kakao", { redirect: true, callbackUrl: "/" })
+            }>
+            <Image src="/login_kakao.png" alt="login" width={200} height={50} />
+          </Button>
+        </Box>
       </Grid>
     </Grid>
   );
