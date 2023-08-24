@@ -47,11 +47,7 @@ const Mypage = () => {
         개인정보수집처리동의
       </Typography>
       <Box sx={{ m: 5 }}>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center">
+        <Grid container direction="row" alignItems="center">
           <List sx={style} component="nav" aria-label="mailbox folders">
             <Divider />
             <ListItemButton href="https://aiaspurs.com/kr/pic">
