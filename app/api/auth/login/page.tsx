@@ -17,8 +17,9 @@ export default function Login() {
       sx={{
         height: "80vh",
         width: "95vw",
-      }}>
-      <Grid>
+      }}
+    >
+      <Grid item>
         <Image
           src="/logo_color.jpg"
           alt="Logo color"
@@ -29,14 +30,17 @@ export default function Login() {
         />
       </Grid>
       <Grid
+        item
         sx={{
           marginBottom: 4,
-        }}>
+        }}
+      >
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#001B3F" }}>
           AIA - SPURS에 오신 것을 환영합니다!
         </Typography>
       </Grid>
       <Grid
+        item
         border="1px solid"
         borderColor="#001B3F"
         borderRadius="16px"
@@ -47,7 +51,8 @@ export default function Login() {
         sx={{
           height: "300px",
           width: "300px",
-        }}>
+        }}
+      >
         <Box>
           <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
             SNS로그인 후 계속하기
@@ -57,7 +62,8 @@ export default function Login() {
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }>
+            }
+          >
             <Image
               src="/login_google.png"
               alt="login_google"
@@ -70,7 +76,8 @@ export default function Login() {
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }>
+            }
+          >
             <Image
               src="/login_naver.png"
               alt="login_naver"
@@ -83,7 +90,8 @@ export default function Login() {
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }>
+            }
+          >
             <Image
               src="/login_kakao.png"
               alt="login_kakao"
