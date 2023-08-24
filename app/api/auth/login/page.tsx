@@ -17,8 +17,7 @@ export default function Login() {
       sx={{
         height: "80vh",
         width: "95vw",
-      }}
-    >
+      }}>
       <Grid item>
         <Image
           src="/logo_color.jpg"
@@ -33,8 +32,7 @@ export default function Login() {
         item
         sx={{
           marginBottom: 4,
-        }}
-      >
+        }}>
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#001B3F" }}>
           AIA - SPURS에 오신 것을 환영합니다!
         </Typography>
@@ -51,8 +49,7 @@ export default function Login() {
         sx={{
           height: "300px",
           width: "300px",
-        }}
-      >
+        }}>
         <Box>
           <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
             SNS로그인 후 계속하기
@@ -62,11 +59,10 @@ export default function Login() {
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }
-          >
+            }>
             <Image
-              src="/login_google.png"
-              alt="login_google"
+              src="/google.png"
+              alt="google_login"
               width={200}
               height={50}
             />
@@ -76,28 +72,16 @@ export default function Login() {
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }
-          >
-            <Image
-              src="/login_naver.png"
-              alt="login_naver"
-              width={200}
-              height={50}
-            />
+            }>
+            <Image src="/naver.png" alt="naver_login" width={200} height={50} />
           </Button>
         </Box>
         <Box>
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
-            }
-          >
-            <Image
-              src="/login_kakao.png"
-              alt="login_kakao"
-              width={200}
-              height={50}
-            />
+            }>
+            <Image src="/kakao.png" alt="kakao_login" width={200} height={50} />
           </Button>
         </Box>
       </Grid>
