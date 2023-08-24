@@ -1,7 +1,18 @@
 "use client";
-import Link from "next/link";
-import React, { FormEvent, useEffect, useState } from "react";
-/*useEffect(() => {
+import React, { useEffect, useState } from "react";
+
+const Faqlists = () => {
+  const columns = [
+    { id: "id", name: "ID" },
+    { id: "title", name: "title" },
+    { id: "explain", name: "Phone" },
+    { id: "ETC", name: "관련설명" },
+  ];
+
+  
+  const [rows, rowchange] = useState([]);
+
+  useEffect(() => {
     fetch("http://localhost:8000/faqlist")
       .then((resp) => {
         return resp.json();
@@ -13,27 +24,20 @@ import React, { FormEvent, useEffect, useState } from "react";
         console.log(e.message);
       });
   }, []);
-*/
-const Faqlists = () => {
- 
-  return <div>
-    <main>
-    <div className="faqtem">
-  <h3>로그인하는 방법</h3>
-    <p>로그인 하는 방법에 대하여 설명드리겠습니다.</p>
-    </div>
-    <div className="faqtem">
-  <h3>회원하는 방법</h3>
-    <p>회원가입 하는 방법에 대하여 설명드리겠습니다.</p>
-    </div>
-    <div className="faqtem">
-  <h3>이벤트참여하는 방법</h3>
-    <p>이벤트 참여하는 방법에 대하여 설명드리겠습니다.</p>
-    </div>
-    </main>
 
-  </div>
-   
-  
+  return (
+    <div style={{ width: "70%", marginLeft: "6%" }}>
+      <h3>FAQ 정보</h3>
+      <ul className="faqlists">
+          {rows.map((list:any)=>(
+            // eslint-disable-next-line react/jsx-key
+            <p key={list.title}>
+              {list.title}
+            </p>
+          ))}
+
+      </ul>
+    </div>
+  );
 };
 export default Faqlists;
