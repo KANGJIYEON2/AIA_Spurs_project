@@ -27,7 +27,7 @@ const Item = styled(Box)(({ theme }) => ({
 
 const DisplayMenu = (menu: string, path: string) => {
   return (
-    <Typography sx={{ fontSize: 14 }} color="#fafafa" align="center">
+    <Typography key={path} sx={{ fontSize: 14 }} color="#fafafa" align="center">
       <Link color="#fafafa" href={path} underline="none">
         {menu}
       </Link>
@@ -127,8 +127,8 @@ const Header = () => {
             display: { xs: "block", md: "none" },
           }}
         >
-          {paths.map(({ name, link }, index) => (
-            <MenuItem key={index}>
+          {paths.map(({ name, link }) => (
+            <MenuItem key={link}>
               <Link
                 href={link}
                 style={{ textDecoration: "none", color: "#001B3F" }}
