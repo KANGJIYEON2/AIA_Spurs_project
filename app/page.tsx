@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "@mui/material/Link";
+import Notice from "./notice/page";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
             p: 0,
             width: "100%",
             height: "300px",
+            marginBottom: 10,
           }}>
           <Link href="/event">
             <Image
@@ -28,7 +30,7 @@ export default function Home() {
               width={"0"}
               height={"0"}
               sizes="100vw,"
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "90%", height: "100%", paddingLeft: 25 }}
             />
           </Link>
         </Box>
@@ -39,11 +41,11 @@ export default function Home() {
         </Box>
         <Box
           sx={{
-            border: "1px dashed grey",
+            display: "flex",
             width: "100%",
-            height: "300px",
+            height: "400px",
           }}>
-          <Typography variant="h4">공지사항 들어갈 공간</Typography>
+          <Notice />
         </Box>
         <Box sx={{ p: 2 }}>
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>

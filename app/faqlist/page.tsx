@@ -11,10 +11,8 @@ import {
   TablePagination,
   IconButton,
 } from "@mui/material";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
-
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 const Faqlists = () => {
   const columns = [
@@ -24,10 +22,10 @@ const Faqlists = () => {
     { id: "ETC", name: "관련설명" },
   ];
 
-  const handlechangepage = (event:any, newpage:any) => {
-     pagechange(newpage);
+  const handlechangepage = (event: any, newpage: any) => {
+    pagechange(newpage);
   };
-  const handleRowsPerPage = (event:any) => {
+  const handleRowsPerPage = (event: any) => {
     rowperpagechange(+event.target.value);
     pagechange(0);
   };
@@ -51,51 +49,50 @@ const Faqlists = () => {
   }, []);
 
   return (
-    <div style={{ width: "70%", marginLeft: "6%" }}>
-      <h3>FAQ리스트</h3>
-      <Paper sx={{ width: "90%" }}>
-        <TableContainer sx={{ maxHeight: 450 }}>
-          <Table stickyHeader>
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  
-                  <TableCell key={column.id}>{column.name}
-            
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows &&
-                rows
-                  .slice(page * rowperpage, page * rowperpage + rowperpage)
-                  .map((row, i) => {
-                    return (
-                      <TableRow key={i}>
-                        {columns &&
-                          columns.map((column, i) => {
-                            let value = row[column.id];
-                            return <TableCell key={value}>{value} </TableCell>;
-                          })}
-                      </TableRow>
-                    );
-                  })}
-            </TableBody>
-          </Table>
-          
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          page={page}
-          count={rows.length}
-          rowsPerPage={rowperpage}
-          component="div"
-          onPageChange={handlechangepage}
-          onRowsPerPageChange={handleRowsPerPage}
-        ></TablePagination>
-      </Paper>
-    </div>
+    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
+      <Box sx={{ marginTop: 5, marginBottom: 30 }}>
+        <h3>FAQ리스트</h3>
+        <Paper sx={{ width: "90%" }}>
+          <TableContainer sx={{ maxHeight: 450 }}>
+            <Table stickyHeader>
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell key={column.id}>{column.name}</TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows &&
+                  rows
+                    .slice(page * rowperpage, page * rowperpage + rowperpage)
+                    .map((row, i) => {
+                      return (
+                        <TableRow key={i}>
+                          {columns &&
+                            columns.map((column, i) => {
+                              let value = row[column.id];
+                              return (
+                                <TableCell key={value}>{value} </TableCell>
+                              );
+                            })}
+                        </TableRow>
+                      );
+                    })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            page={page}
+            count={rows.length}
+            rowsPerPage={rowperpage}
+            component="div"
+            onPageChange={handlechangepage}
+            onRowsPerPageChange={handleRowsPerPage}></TablePagination>
+        </Paper>
+      </Box>
+    </Container>
   );
 };
 export default Faqlists;

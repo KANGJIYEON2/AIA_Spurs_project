@@ -47,6 +47,8 @@ export default function TextMobileStepper() {
     <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
       <Box
         sx={{
+          maxWidth: "100%",
+          height: "100vh",
           marginBottom: 20,
           bgcolor: "#9ee1f7",
           display: "flex",

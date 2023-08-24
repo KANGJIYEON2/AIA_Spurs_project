@@ -16,7 +16,7 @@ export default function Login() {
       alignItems="center"
       sx={{
         height: "80vh",
-        width: "100%",
+        width: "95vw",
       }}>
       <Grid>
         <Image
@@ -45,12 +45,12 @@ export default function Login() {
         justifyContent="center"
         alignItems="center"
         sx={{
-          height: "40%",
+          height: "300px",
           width: "300px",
         }}>
         <Box>
           <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
-            카카오톡으로 계속하기
+            SNS로그인 후 계속하기
           </Typography>
         </Box>
         <Box>
