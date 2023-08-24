@@ -22,8 +22,7 @@ export default function Home() {
             width: "100%",
             height: "300px",
             marginBottom: 10,
-          }}
-        >
+          }}>
           <Link href="/event">
             <Image
               src="/main_event.png"
@@ -45,8 +44,7 @@ export default function Home() {
             display: "flex",
             width: "100%",
             height: "400px",
-          }}
-        >
+          }}>
           <Notice />
         </Box>
         <Box sx={{ p: 2 }}>
@@ -59,8 +57,7 @@ export default function Home() {
             border: "1px dashed grey",
             width: "100%",
             height: "300px",
-          }}
-        >
+          }}>
           <Typography variant="h4">spurs&apos;s pick 들어갈 공간</Typography>
         </Box>
       </Box>

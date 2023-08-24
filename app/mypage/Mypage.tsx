@@ -22,8 +22,9 @@ const style = {
 const Mypage = () => {
   const { data: session } = useSession();
   const userProfileImg = session?.user?.image as string;
+
   return (
-    <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
+    <Container sx={{ minWidth: "sm", maxWidth: "lg", marginLeft: 15 }}>
       <Typography variant="h4" sx={{ marginLeft: 5, marginTop: 5 }}>
         프로필
       </Typography>

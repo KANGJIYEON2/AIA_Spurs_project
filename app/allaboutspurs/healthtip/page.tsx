@@ -1,165 +1,44 @@
-import * as React from "react";
+import React from "react";
+import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
-import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
-const steps = [
-  {
-    label: "Select campaign settings",
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
-  },
-  {
-    label: "Create an ad group",
-    description:
-      "An ad group contains one or more ads which target a shared set of keywords.",
-  },
-  {
-    label: "Create an ad",
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
-  },
+const videopath = [
+  "https://videos.ctfassets.net/49hp26a2avpu/3qEKHussr3XHE9EOvzOoi8/727be4aafd2df2880495ff6518ebd4cf/PEH-OS-Eat-well-.mp4",
+  "https://videos.ctfassets.net/49hp26a2avpu/18tzWHQStH5hMyBXvGYD2T/f4606f5bbda8d5b9fcf6ac9861401eb5/230609_AIA_HARRY_KANE_edit_v06_KOR_SUB.mp4",
+  "https://videos.ctfassets.net/49hp26a2avpu/6gRFF9pUEuWZKlgRbBhhRk/925cc4ac26ab649f5a3896adbb3c6c46/AIA_-_TOTTENHAM_HOTSPUR_MENTAL_HEALTH_1__1__1.mp4",
+  "https://videos.ctfassets.net/49hp26a2avpu/y4sHiQDjoFflyIB5bdKFq/889279e20ec633ea95741155bcf23622/UNI813_Health_Tips_Tip5_DS_MASTER.mp4",
+  "https://videos.ctfassets.net/49hp26a2avpu/17lxXjMFdCR0yIi0CoVSwy/7033d930076d0b1ef85e3f80a2b9fb2b/CSM_ERICDIER_BACKGAMMON_CUT_FINAL_1.mp4",
+  "https://videos.ctfassets.net/49hp26a2avpu/2O4EgKJPNYZfofSMTfCWJ6/e7fb5bb67512b45ed57ac12582ccf5ab/AIA_-_TOTTENHAM_HOTSPUR_MENTAL_HEALTH_2.mp4",
 ];
 
-export default function TextMobileStepper() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
+const VideoGrid = ({ path }: { path: string }) => {
+  return (
+    <Grid
+      xs={4}
+      container
+      justifyContent="center"
+      alignItems="center"
+      sx={{ width: "250px", height: "250px" }}>
+      <video style={{ width: "300px", height: "300px" }}>
+        <source src={path} />
+      </video>
+    </Grid>
+  );
+};
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
+export default function Healthtip() {
   return (
     <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-      <Box
-        sx={{
-          maxWidth: "100%",
-          height: "100vh",
-          marginBottom: 20,
-          bgcolor: "#9ee1f7",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-        <Box sx={{ maxWidth: 400, flexGrow: 1, bgcolor: "#daeba2" }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            몸건강
-          </Typography>
-          <Paper
-            square
-            elevation={0}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              height: 50,
-              pl: 2,
-              bgcolor: "#f79ef4",
-            }}>
-            <Typography>{steps[activeStep].label}</Typography>
-          </Paper>
-          <Box sx={{ height: 255, maxWidth: 400, width: "100%", p: 2 }}>
-            {steps[activeStep].description}
-          </Box>
-          <MobileStepper
-            variant="text"
-            steps={maxSteps}
-            position="static"
-            activeStep={activeStep}
-            nextButton={
-              <Button
-                size="small"
-                onClick={handleNext}
-                disabled={activeStep === maxSteps - 1}>
-                Next
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
-            }
-            backButton={
-              <Button
-                size="small"
-                onClick={handleBack}
-                disabled={activeStep === 0}>
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowRight />
-                ) : (
-                  <KeyboardArrowLeft />
-                )}
-                Back
-              </Button>
-            }
-          />
-        </Box>
-        <Box sx={{ maxWidth: 400, flexGrow: 1, bgcolor: "#daeba2" }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            마음건강
-          </Typography>
-          <Paper
-            square
-            elevation={0}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              height: 50,
-              pl: 2,
-              bgcolor: "#f79ef4",
-            }}>
-            <Typography>{steps[activeStep].label}</Typography>
-          </Paper>
-          <Box sx={{ height: 255, maxWidth: 400, width: "100%", p: 2 }}>
-            {steps[activeStep].description}
-          </Box>
-          <MobileStepper
-            variant="text"
-            steps={maxSteps}
-            position="static"
-            activeStep={activeStep}
-            nextButton={
-              <Button
-                size="small"
-                onClick={handleNext}
-                disabled={activeStep === maxSteps - 1}>
-                Next
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
-            }
-            backButton={
-              <Button
-                size="small"
-                onClick={handleBack}
-                disabled={activeStep === 0}>
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowRight />
-                ) : (
-                  <KeyboardArrowLeft />
-                )}
-                Back
-              </Button>
-            }
-          />
-        </Box>
-      </Box>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ width: "100%", height: "70vh" }}>
+        {videopath.map((path, index) => (
+          <VideoGrid key={index} path={path} />
+        ))}
+      </Grid>
     </Container>
   );
 }
