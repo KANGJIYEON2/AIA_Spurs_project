@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import Notice from "./notice/page";
+import Special from "./allaboutspurs/special/page copy";
+import Grid from "@mui/material/Grid";
 
 export default function Home() {
   return (
@@ -47,18 +49,19 @@ export default function Home() {
           }}>
           <Notice />
         </Box>
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ p: 2, marginTop: 7 }}>
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             SPURS&apos; PICK
           </Typography>
         </Box>
-        <Box
-          sx={{
-            border: "1px dashed grey",
-            width: "100%",
-            height: "300px",
-          }}>
-          <Typography variant="h4">spurs&apos;s pick 들어갈 공간</Typography>
+        <Box>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center">
+            <Special />
+          </Grid>
         </Box>
       </Box>
     </Container>
