@@ -19,7 +19,8 @@ export default function Tour() {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          spacing={0}>
+          spacing={0}
+        >
           <Grid>
             <Image
               src="/tour.png"
@@ -36,9 +37,9 @@ export default function Tour() {
             </Typography>
           </Grid>
           <Grid>
-            <Typography variant="h7">
+            <Typography variant="h6">
               Explore the Tottenham Hotspur Stadium in 360, and learn football
-              tips from Tottenham Hotspur's coaches!
+              tips from Tottenham Hotspur&apos;s coaches!
             </Typography>
           </Grid>
           <br />
@@ -52,7 +53,8 @@ export default function Tour() {
                   fontWeight: "bold",
                   width: 225,
                   height: 55,
-                }}>
+                }}
+              >
                 ENTER
               </Button>
             </Link>

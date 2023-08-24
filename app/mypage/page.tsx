@@ -5,7 +5,7 @@ import Mypage from "./Mypage";
 import Login from "../api/auth/login/page";
 import { useSession } from "next-auth/react";
 
-const page: React.FC = () => {
+const My_page: React.FC = () => {
   const { data: session } = useSession();
 
   return (
@@ -16,4 +16,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default My_page;
