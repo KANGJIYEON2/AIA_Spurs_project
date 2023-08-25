@@ -1,19 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
-const Faqlists = () => {
-  const columns = [
-    { id: "id", name: "ID" },
-    { id: "title", name: "title" },
-    { id: "explain", name: "Phone" },
-    { id: "ETC", name: "관련설명" },
-  ];
-
-  
-  const [rows, rowchange] = useState([]);
-
-  useEffect(() => {
+import React, { FormEvent, useEffect, useState } from "react";
+/*useEffect(() => {
     fetch("http://localhost:8000/faqlist")
       .then((resp) => {
         return resp.json();
@@ -25,20 +13,14 @@ const Faqlists = () => {
         console.log(e.message);
       });
   }, []);
-
-  return (
-    <div style={{ width: "70%", marginLeft: "6%" }}>
-      <h3>FAQ 정보</h3>
-      <ul className="faqlists">
-          {rows.map((list:any)=>(
-            // eslint-disable-next-line react/jsx-key
-            <Link href={`/rows/${list.id}`} key={list.title}>
-              {list.title}
-            
-              </Link>
-          ))}
-
-      </ul>
+*/
+const Faqlists = () => {
+ 
+  return <div>
+    <main>
+    <div className="faqtem">
+  <h3>로그인하는 방법</h3>
+    <p>로그인 하는 방법에 대하여 설명드리겠습니다.</p>
     </div>
   );
 };
