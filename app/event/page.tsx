@@ -11,6 +11,7 @@ import Faqpage from "../faqlist/page";
 import Notice from "../notice/page";
 import Container from "@mui/material/Container";
 
+
 export default function EventTabs() {
   const [value, setValue] = React.useState("1");
 

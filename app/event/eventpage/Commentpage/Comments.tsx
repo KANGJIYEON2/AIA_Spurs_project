@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Comment from "./comment";
 import CommentForm from "./commentForm";
 
+
 interface CommentType {
   id: string;
   body: string;
