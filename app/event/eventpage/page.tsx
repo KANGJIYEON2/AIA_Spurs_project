@@ -17,7 +17,7 @@ import CardActions from "@mui/material/CardActions";
 import { Grid, Box, Table } from "@mui/material";
 import { BorderAll, Height } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-import Comments from "./commentpage/comments"
+import Comments from "./commentpage/comments1"
 
 export default function Event() {
   const form = useForm();
