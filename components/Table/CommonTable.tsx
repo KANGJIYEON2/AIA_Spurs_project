@@ -13,6 +13,7 @@ const CommonTable = (props:any) => {
                 <td className="common-table-header-column" key={index}>{ item }</td>
               )
             })
+        
           }
         </tr>
       </thead>
