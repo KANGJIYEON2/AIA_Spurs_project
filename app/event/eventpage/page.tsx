@@ -17,7 +17,7 @@ import CardActions from "@mui/material/CardActions";
 import { Grid, Box, Table } from "@mui/material";
 import { BorderAll, Height } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-import Comments from "./Commentpage/Comments";
+import Comments from "./commentpage/comments"
 
 export default function Event() {
   const form = useForm();
@@ -355,7 +355,7 @@ export default function Event() {
           </DialogContent>
         </Dialog>
         <div>
-          <Comments currenUserId="1" />
+          <Comments currentUserId="1" />
         </div>
       </div>
     </main>

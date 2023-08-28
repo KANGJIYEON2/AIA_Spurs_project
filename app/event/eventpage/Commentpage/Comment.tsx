@@ -1,6 +1,7 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const Comment = ({comment, replies}) => {
+
+const Comment = ({comment, replies}:any) => {
   return (
     <div className="comment">
       <div className="comment-image-container">
@@ -14,7 +15,7 @@ const Comment = ({comment, replies}) => {
       <div className='comment-text'> {comment.body} </div>
       {replies.length > 0 && (
         <div className='replies'>
-          {replies.map((reply) => (
+          {replies.map((reply:any) => (
             <Comment comment={reply} key={reply.id} replies={[]} />
           ))}
   </div>

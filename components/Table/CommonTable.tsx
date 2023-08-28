@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommonTable = props => {
+const CommonTable = (props:any) => {
   const { headersName, children } = props;
 
   return (
@@ -8,11 +8,12 @@ const CommonTable = props => {
       <thead>
         <tr>
           {
-            headersName.map((item, index) => {
+            headersName.map((item:any, index:any) => {
               return (
                 <td className="common-table-header-column" key={index}>{ item }</td>
               )
             })
+        
           }
         </tr>
       </thead>
