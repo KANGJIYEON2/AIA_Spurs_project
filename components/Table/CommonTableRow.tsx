@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommonTableRow = ({ children }) => {
+const CommonTableRow = ({ children }:any) => {
   return (
     <tr className="common-table-row">
       {
