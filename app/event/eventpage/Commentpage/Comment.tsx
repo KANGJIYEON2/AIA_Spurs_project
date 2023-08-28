@@ -1,5 +1,6 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+
 const Comment = ({comment, replies}:any) => {
   return (
     <div className="comment">
