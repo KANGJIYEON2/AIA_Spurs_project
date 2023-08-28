@@ -95,8 +95,7 @@ export default function Event() {
         spacing={2}
         direction="column"
         alignItems="center"
-        justifyItems="center"
-      >
+        justifyItems="center">
         <Image
           src="/event1.png"
           width={"0"}
@@ -122,8 +121,7 @@ export default function Event() {
               variant="outlined"
               onClick={handleClickOpen}
               color={"secondary"}
-              sx={{ width: 400, height: 60 }}
-            >
+              sx={{ width: 400, height: 60 }}>
               <h3>이벤트 참여하기</h3>
             </Button>
           </CardActions>
@@ -138,8 +136,7 @@ export default function Event() {
                 maxWidth: "900px", // Set your width here
               },
             },
-          }}
-        >
+          }}>
           <DialogTitle>이벤트 참여하기</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -159,8 +156,7 @@ export default function Event() {
               </p>
               <Box
                 sx={{ border: 1 }}
-                style={{ maxHeight: 80, overflow: "auto" }}
-              >
+                style={{ maxHeight: 80, overflow: "auto" }}>
                 <p>
                   <strong>수집·이용 목적 </strong>
                   이벤트 진행 및 관련 업무 처리 (당첨자 선정, 안내, 경품 제공,
@@ -179,8 +175,7 @@ export default function Event() {
               </p>
               <Box
                 sx={{ border: 1, borderRadius: 1 }}
-                style={{ maxHeight: 80, overflow: "auto" }}
-              >
+                style={{ maxHeight: 80, overflow: "auto" }}>
                 <p>
                   <strong> 위탁받는 자(수탁업체)</strong>
                   CSM Sports & Entertainment, 젤라블루 회사와 위탁계약을 체결한
@@ -207,8 +202,7 @@ export default function Event() {
               </p>
               <Box
                 sx={{ border: 1 }}
-                style={{ maxHeight: 80, overflow: "auto" }}
-              >
+                style={{ maxHeight: 80, overflow: "auto" }}>
                 <p>
                   <strong>수집·이용 목적 </strong>
                   회사의 보험상품 소개 및 판매, 바이탈리티 등 서비스 안내,
