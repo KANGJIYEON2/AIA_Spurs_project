@@ -10,8 +10,9 @@ const My_page = () => {
 
   return (
     <main>
-      {session && <Mypage />}
-      {!session && <Login />}
+      <Mypage />
+      {/* {session && <Mypage />}
+      {!session && <Login />} */}
     </main>
   );
 };
