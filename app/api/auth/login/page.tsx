@@ -50,12 +50,12 @@ export default function Login() {
           height: "300px",
           width: "300px",
         }}>
-        <Box>
+        <Grid>
           <Typography sx={{ fontWeight: "bold", color: "#001B3F" }}>
             SNS로그인 후 계속하기
           </Typography>
-        </Box>
-        <Box>
+        </Grid>
+        <Grid>
           <Button
             onClick={() =>
               signIn("google", { redirect: true, callbackUrl: "/" })
@@ -65,10 +65,11 @@ export default function Login() {
               alt="google_login"
               width={200}
               height={50}
+              priority={true}
             />
           </Button>
-        </Box>
-        <Box>
+        </Grid>
+        <Grid>
           <Button
             onClick={() =>
               signIn("naver", { redirect: true, callbackUrl: "/" })
@@ -78,10 +79,11 @@ export default function Login() {
               alt="naver_login"
               width={200}
               height={50}
+              priority={true}
             />
           </Button>
-        </Box>
-        <Box>
+        </Grid>
+        <Grid>
           <Button
             onClick={() =>
               signIn("kakao", { redirect: true, callbackUrl: "/" })
@@ -91,9 +93,10 @@ export default function Login() {
               alt="kakao_login"
               width={200}
               height={50}
+              priority={true}
             />
           </Button>
-        </Box>
+        </Grid>
       </Grid>
     </Grid>
   );
