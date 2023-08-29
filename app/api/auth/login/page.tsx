@@ -58,7 +58,7 @@ export default function Login() {
         <Box>
           <Button
             onClick={() =>
-              signIn("kakao", { redirect: true, callbackUrl: "/" })
+              signIn("google", { redirect: true, callbackUrl: "/" })
             }>
             <Image
               src="/google/google.png"
@@ -71,7 +71,7 @@ export default function Login() {
         <Box>
           <Button
             onClick={() =>
-              signIn("kakao", { redirect: true, callbackUrl: "/" })
+              signIn("naver", { redirect: true, callbackUrl: "/" })
             }>
             <Image
               src="/naver/naver.png"
