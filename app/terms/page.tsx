@@ -9,7 +9,7 @@ import "../globals.css";
 export default function terms() {
   return (
     <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-      <Box sx={{ m: 5, p: 2, height: "110vh" }}>
+      <Box sx={{ m: 5, p: 2 }}>
         <Typography color="error" variant="h5" sx={{ fontWeight: "bold" }}>
           Term and Conditions
         </Typography>
