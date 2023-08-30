@@ -32,7 +32,7 @@ export default function Home() {
               width={"0"}
               height={"0"}
               sizes="100vw,"
-              style={{ width: "90%", height: "100%", paddingLeft: 25 }}
+              style={{ width: "90%", height: "100%", paddingLeft: 20 }}
             />
           </Link>
         </Box>
@@ -44,8 +44,7 @@ export default function Home() {
         <Box
           sx={{
             display: "flex",
-            width: "100%",
-            height: "400px",
+            width: "100%"
           }}>
           <Notice />
         </Box>
