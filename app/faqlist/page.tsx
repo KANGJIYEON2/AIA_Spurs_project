@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
@@ -28,43 +28,22 @@ const columns: GridColDef[] = [
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    title: "로그인 하는 방법",
-    contents: "로그인을 하기 위해서는 LOGIN 창에 접속해야 합니다.",
-    note: "로그인 관련 문의",
-  },
-  {
-    id: 2,
-    title: "이벤트 참여하는 방법",
-    contents: "이벤트에 참여하기 위해서는 EVENT 창에 접속해야 합니다.",
-    note: "이벤트 관련 문의",
-  },
-  {
-    id: 3,
-    title: "비밀번호 찾는 방법",
-    contents:
-      "비밀번호를 찾기 위해서는 해당 SNS에서 비밀번호 찾기를 진행해야 합니다.",
-    note: "로그인 관련 문의",
-  },
-  {
-    id: 4,
-    title: "영상 재생이 안되는 경우",
-    contents:
-      "원활한 영상 재생을 위해서는 Chrome 브라우저 접속을 권장하고 있습니다.",
-    note: "콘텐츠 관련 문의",
-  },
-  {
-    id: 5,
-    title: "사진 다운로드가 안되는 경우",
-    contents:
-      "원활한 콘텐츠 재생을 위해서는 Chrome 브라우저 접속을 권장하고 있습니다.",
-    note: "콘텐츠 관련 문의",
-  },
-];
-
 export default function DataGridDemo() {
+  const [rows, rowchange] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/faqlist")
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((resp) => {
+        rowchange(resp);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }, []);
+
   return (
     <Box sx={{ width: "100%" }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
