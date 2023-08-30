@@ -3,10 +3,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import "../globals.css";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 export default function Footer() {
   const FooterInfo = (
-    <Grid item xs={8} paddingBottom={1}>
+    <Grid item xs={6}>
       <Typography sx={{ fontSize: 14 }} color="#fafafa">
         AIA 생명보험 주식회사 <br />
         서울시 중구 통일로2길 16(순화동 216) AIA타워 <br />
@@ -24,7 +26,7 @@ export default function Footer() {
   };
 
   const FooterLink = (
-    <Grid item xs={4}>
+    <Grid item xs={6}>
       <Typography sx={{ fontSize: 14 }} align="right">
         {Links("서비스 이용 약관", "/terms")}
         {Links(
@@ -37,16 +39,24 @@ export default function Footer() {
   );
 
   return (
-    <Grid
-      className="Footer"
-      container
-      spacing={1}
+    <Box
       sx={{
         bgcolor: "#333D47",
-      }}
-      padding={1}>
-      {FooterInfo}
-      {FooterLink}
-    </Grid>
+      }}>
+      <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
+        <Grid
+          className="Footer"
+          container
+          justifyContent="center"
+          spacing={1}
+          sx={{
+            bgcolor: "#333D47",
+          }}
+          padding={1}>
+          {FooterInfo}
+          {FooterLink}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
