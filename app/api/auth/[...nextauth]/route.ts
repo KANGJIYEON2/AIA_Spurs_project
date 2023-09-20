@@ -12,7 +12,7 @@ const handler = NextAuth({
         id: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const userId = credentials?.id;
         const userPassword = credentials?.password;
 
@@ -39,7 +39,7 @@ const handler = NextAuth({
           user.id === credentials.id &&
           user.password === credentials.password
         ) {
-          return { id: user.id, name: user.name };
+          return { id: user.id, name: user.name, email: user.email };
         } else {
           return null;
         }

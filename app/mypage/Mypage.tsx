@@ -21,6 +21,7 @@ const style = {
 
 const Mypage = () => {
   const { data: session } = useSession();
+  console.log("Session Data:", session);
   const userProfileImg = session?.user?.image as string;
 
   return (
