@@ -1,68 +1,33 @@
-"use client";
+import { useEffect, useState } from "react";
+import { Faqs } from "@/interface/faqlist";
+import getAllFaqs from "@/lib/getAllFaqs";
+import Link from "next/link";
 
-import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import Typography from "@mui/material/Typography";
+export default function UseFaqs() {
+    const [faqs, setFaqs] = useState<Faqs[]>([]);
 
-const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
-  {
-    field: "title",
-    headerName: "title",
-    width: 200,
-    editable: true,
-  },
-  {
-    field: "contents",
-    headerName: "contents",
-    width: 550,
-    editable: true,
-  },
-  {
-    field: "note",
-    headerName: "note",
-    type: "string",
-    width: 200,
-    editable: true,
-  },
-];
+    useEffect(() => {
+        async function fetchFaqs() {
+            const data = await getAllFaqs();
+            setFaqs(data);
+            console.log(data);
+        }
 
-export default function DataGridDemo() {
-  const [rows, rowchange] = useState([]);
+        fetchFaqs();
+    }, []);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/faqlist")
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((resp) => {
-        rowchange(resp);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }, []);
-
-  return (
-    <Box sx={{ width: "100%" }}>
-      <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-        AIA-SPURS 관련 FAQ
-      </Typography>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-  );
+    return (
+        <div>
+            <h1>
+                {faqs.map((faq: any) => {
+                    return (
+                        <p key={faq.id}>
+                            {" "}
+                            <Link href={`/faqlist/${faq.id}`}>{faq.title}</Link>
+                        </p>
+                    );
+                })}
+            </h1>
+        </div>
+    );
 }
