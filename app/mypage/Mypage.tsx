@@ -39,7 +39,7 @@ const Mypage = () => {
         <Box
           alignItems="center"
           sx={{ marginRight: 2, flexGrow: 5, paddingTop: 7 }}>
-          <Typography>name : {session?.user?.name}</Typography>
+          <Typography>Name : {session?.user?.name}</Typography>
           <br />
           <Typography>Email : {session?.user?.email}</Typography>
         </Box>

@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
+import { Alert } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { NextPage } from "next";
+import { signIn } from "next-auth/react";
 
 const theme = createTheme({
   palette: {
@@ -18,23 +21,36 @@ const theme = createTheme({
   },
 });
 
-export default function Login2() {
-  const [FormData, setFormData] = useState({
-    id: "",
-    password: "",
-  });
+const Login2: NextPage = (props): JSX.Element => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [blankPw, setBlankPw] = useState(false);
+  const [blankId, setBlankId] = useState(false);
+  const [error, setError] = useState(false);
+  const router = useRouter();
 
-  const handleFormChange = (event: any) => {
-    const { name, value, checked } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: name === "receiveEmails" ? checked : value,
-    }));
+  const onChangeId = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setId(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const onChangePw = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(FormData); // Submit form data to server here
+    if (id.length <= 0) setBlankId(true);
+    if (password.length <= 0) setBlankPw(true);
+    if (!blankId && !blankPw) {
+      await signIn("credentials", {
+        id: id,
+        password: password,
+        redirect: false,
+      }).then((result) => {
+        if (result?.ok) router.push("/");
+        if (result?.error) setError(true);
+      });
+    }
   };
 
   return (
@@ -46,41 +62,43 @@ export default function Login2() {
         justifyContent="center"
         alignItems="center"
         sx={{ m: 5, height: "75vh" }}>
-        <form onSubmit={handleSubmit}>
+        <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
           <Box>
             <TextField
-              required
-              label="ID"
-              name="id"
+              label="id"
               variant="outlined"
-              value={FormData.id}
-              onChange={handleFormChange}
+              value={id}
+              onChange={onChangeId}
+              onBlur={() => setBlankId(id.length <= 0)}
             />
+            {blankId && <Alert severity="error">아이디를 입력해주세요</Alert>}
           </Box>
           <Box sx={{ marginTop: 1, marginBottom: 1 }}>
             <TextField
-              required
               type="password"
-              label="PASSWORD"
-              name="password"
+              label="password"
               variant="outlined"
-              value={FormData.password}
-              onChange={handleFormChange}
+              value={password}
+              onChange={onChangePw}
+              onBlur={() => setBlankPw(password.length <= 0)}
             />
+            {blankPw && <Alert severity="error">비밀번호를 입력해주세요</Alert>}
           </Box>
           <ThemeProvider theme={theme}>
             <Box>
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ width: 225, height: 55 }}
-                href={FormData.id === "admin" ? "/admin" : "/"}>
+                sx={{ width: 225, height: 55 }}>
                 LOGIN
               </Button>
             </Box>
           </ThemeProvider>
-        </form>
+          {error && <Alert severity="error">비밀번호를 확인해주세요</Alert>}
+        </Box>
       </Grid>
     </Container>
   );
-}
+};
+
+export default Login2;

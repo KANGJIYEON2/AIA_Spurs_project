@@ -1,4 +1,24 @@
 {
+  "User": [
+    {
+      "id": "admin",
+      "password": "1234",
+      "name": "관리자",
+      "email": "1234@naver.com"
+    },
+    {
+      "id": "master",
+      "password": "1234",
+      "name": "마스터",
+      "email": "master@naver.com"
+    },
+    {
+      "id": "test",
+      "password": "1234",
+      "name": "테스트",
+      "email": "test@naver.com"
+    }
+  ],
   "users": [
     {
       "id": 1,
