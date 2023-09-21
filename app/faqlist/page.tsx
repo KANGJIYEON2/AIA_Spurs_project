@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { Faqs } from "@/interface/faqlist";
+import { Faqs } from "@/interface/list";
 import getAllFaqs from "@/lib/getAllFaqs";
 import Link from "next/link";
 import {
@@ -19,7 +21,8 @@ import {
 export default function UseFaqs() {
     const columns = [
         { id: "id", name: "ID" },
-        { id: "title", name: "title" },
+        { id: "title", name: "제목" },
+        { id: "data", name: "날짜" },
     ];
 
     const [faqs, setFaqs] = useState<Faqs[]>([]);
@@ -45,8 +48,16 @@ export default function UseFaqs() {
     return (
         <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
             <Box sx={{ marginTop: 5, marginBottom: 30 }}>
-                <Typography variant="h3">AIA-SPURS FAQ</Typography>
-                <Paper sx={{ width: "90%" }}>
+                <Typography variant="h3" textAlign={"center"} mb={"20"}>
+                    AIA-SPURS FAQ
+                </Typography>
+                <Paper
+                    sx={{
+                        width: "100%",
+                        alignItems: "center",
+                        justifyItems: "center",
+                    }}
+                >
                     <TableContainer sx={{ maxHeight: 600 }}>
                         <Table stickyHeader>
                             <TableHead>
@@ -84,22 +95,31 @@ export default function UseFaqs() {
                                                         column.id === "title"
                                                     ) {
                                                         return (
-                                                            <TableCell
-                                                                key={column.id}
-                                                            >
-                                                                <Link
-                                                                    href={`/faqlist/${faq.id}`}
-                                                                    style={{
-                                                                        textDecoration:
-                                                                            "none",
-                                                                        color: "inherit",
-                                                                    }}
+                                                            <>
+                                                                <TableCell
+                                                                    key={
+                                                                        column.id
+                                                                    }
                                                                 >
-                                                                    {value}
-                                                                </Link>
-                                                            </TableCell>
+                                                                    <Link
+                                                                        href={`/faqlist/${faq.id}`}
+                                                                        style={{
+                                                                            textDecoration:
+                                                                                "none",
+                                                                            color: "inherit",
+                                                                        }}
+                                                                    >
+                                                                        {value}
+                                                                    </Link>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {faq.date}{" "}
+                                                                </TableCell>
+                                                            </>
                                                         );
-                                                    } else {
+                                                    } else if (
+                                                        column.id !== "date"
+                                                    ) {
                                                         return (
                                                             <TableCell
                                                                 key={column.id}

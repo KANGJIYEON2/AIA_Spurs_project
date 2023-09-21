@@ -1,90 +1,547 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import {
-  Paper,
-  Table,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  TablePagination,
-} from "@mui/material";
+import { useState, useEffect } from "react";
+import * as React from "react";
+import Box from "@mui/joy/Box";
+import Table from "@mui/joy/Table";
+import Typography from "@mui/joy/Typography";
+import Sheet from "@mui/joy/Sheet";
+import Checkbox from "@mui/joy/Checkbox";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import IconButton from "@mui/joy/IconButton";
+import Link from "@mui/joy/Link";
+import Tooltip from "@mui/joy/Tooltip";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { visuallyHidden } from "@mui/utils";
 
-const Userpage = () => {
-  const columns = [
-    { id: "id", name: "ID" },
-    { id: "name", name: "Name" },
-    { id: "phoneNum", name: "Phone" },
-    { id: "adress", name: "Adress" },
-  ];
+interface Userlists {
+    id: any;
+    name: string;
+    phoneNum: string;
+    adress: string;
+}
+function Users(
+    id: any,
+    name: string,
+    phoneNum: string,
+    adress: string
+): Userlists {
+    return {
+        id,
+        name,
+        phoneNum,
+        adress,
+    };
+}
 
-  const handlechangepage = (event:any, newpage:any) => {
-    pagechange(newpage);
-  };
-  const handleRowsPerPage = (event:any) => {
-    rowperpagechange(+event.target.value);
-    pagechange(0);
-  };
+function labelDisplayedRows({
+    from,
+    to,
+    count,
+}: {
+    from: number;
+    to: number;
+    count: number;
+}) {
+    return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+}
 
-  const [rows, rowchange] = useState([]);
-  const [page, pagechange] = useState(0);
-  const [rowperpage, rowperpagechange] = useState(5);
-  useEffect(() => {
-    fetch("http://localhost:8000/users")
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((resp) => {
-        rowchange(resp);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }, []);
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+    if (b[orderBy] < a[orderBy]) {
+        return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
+    }
+    return 0;
+}
 
-  return (
-    <div style={{ width: "70%", marginLeft: "6%" }}>
-      <h3>회원정보</h3>
-      <Paper sx={{ width: "90%" }}>
-        <TableContainer sx={{ maxHeight: 450 }}>
-          <Table stickyHeader>
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell key={column.id}>{column.name}</TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows &&
-                rows
-                  .slice(page * rowperpage, page * rowperpage + rowperpage)
-                  .map((row, i) => {
+type Order = "asc" | "desc";
+
+function getComparator<Key extends keyof any>(
+    order: Order,
+    orderBy: Key
+): (
+    a: { [key in Key]: number | string },
+    b: { [key in Key]: number | string }
+) => number {
+    return order === "desc"
+        ? (a, b) => descendingComparator(a, b, orderBy)
+        : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort<T>(
+    array: readonly T[],
+    comparator: (a: T, b: T) => number
+) {
+    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+    stabilizedThis.sort((a, b) => {
+        const order = comparator(a[0], b[0]);
+        if (order !== 0) {
+            return order;
+        }
+        return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+}
+
+interface HeadCell {
+    disablePadding: boolean;
+    id: keyof Userlists;
+    label: string;
+    numeric: boolean;
+}
+
+const headCells: readonly HeadCell[] = [
+    {
+        id: "id",
+        numeric: false,
+        disablePadding: true,
+        label: "회원아이디",
+    },
+    {
+        id: "name",
+        numeric: true,
+        disablePadding: false,
+        label: "이름",
+    },
+    {
+        id: "phoneNum",
+        numeric: true,
+        disablePadding: false,
+        label: "전화번호",
+    },
+    {
+        id: "adress",
+        numeric: true,
+        disablePadding: false,
+        label: "주소",
+    },
+];
+
+interface EnhancedTableProps {
+    numSelected: number;
+    onRequestSort: (
+        event: React.MouseEvent<unknown>,
+        property: keyof Userlists
+    ) => void;
+    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    order: Order;
+    orderBy: string;
+    rowCount: number;
+}
+
+function EnhancedTableHead(props: EnhancedTableProps) {
+    const {
+        onSelectAllClick,
+        order,
+        orderBy,
+        numSelected,
+        rowCount,
+        onRequestSort,
+    } = props;
+    const createSortHandler =
+        (property: keyof Userlists) => (event: React.MouseEvent<unknown>) => {
+            onRequestSort(event, property);
+        };
+
+    return (
+        <thead>
+            <tr>
+                <th style={{ width: "40" }}>
+                    <Checkbox
+                        indeterminate={
+                            numSelected > 0 && numSelected < rowCount
+                        }
+                        checked={rowCount > 0 && numSelected === rowCount}
+                        onChange={onSelectAllClick}
+                        slotProps={{
+                            input: {
+                                "aria-label": "select all desserts",
+                            },
+                        }}
+                        sx={{ verticalAlign: "sub" }}
+                    />
+                </th>
+                {headCells.map((headCell) => {
+                    const active = orderBy === headCell.id;
                     return (
-                      <TableRow key={i}>
-                        {columns &&
-                          columns.map((column, i) => {
-                            let value = row[column.id];
-                            return <TableCell key={value}>{value}</TableCell>;
-                          })}
-                      </TableRow>
+                        <th
+                            key={headCell.id}
+                            aria-sort={
+                                active
+                                    ? (
+                                          {
+                                              asc: "ascending",
+                                              desc: "descending",
+                                          } as const
+                                      )[order]
+                                    : undefined
+                            }
+                        >
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                            <Link
+                                underline="none"
+                                color="neutral"
+                                textColor={
+                                    active ? "primary.plainColor" : "primay"
+                                }
+                                component="button"
+                                onClick={createSortHandler(headCell.id)}
+                                fontWeight="lg"
+                                startDecorator={
+                                    headCell.numeric ? (
+                                        <ArrowDownwardIcon
+                                            sx={{ opacity: active ? 1 : 0 }}
+                                        />
+                                    ) : null
+                                }
+                                endDecorator={
+                                    !headCell.numeric ? (
+                                        <ArrowDownwardIcon
+                                            sx={{ opacity: active ? 1 : 0 }}
+                                        />
+                                    ) : null
+                                }
+                                sx={{
+                                    "& svg": {
+                                        transition: "0.2s",
+                                        transform:
+                                            active && order === "desc"
+                                                ? "rotate(0deg)"
+                                                : "rotate(180deg)",
+                                    },
+                                    "&:hover": { "& svg": { opacity: 1 } },
+                                }}
+                            >
+                                {headCell.label}
+                                {active ? (
+                                    <Box component="span" sx={visuallyHidden}>
+                                        {order === "desc"
+                                            ? "sorted descending"
+                                            : "sorted ascending"}
+                                    </Box>
+                                ) : null}
+                            </Link>
+                        </th>
                     );
-                  })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          page={page}
-          count={rows.length}
-          rowsPerPage={rowperpage}
-          component="div"
-          onPageChange={handlechangepage}
-          onRowsPerPageChange={handleRowsPerPage}
-        ></TablePagination>
-      </Paper>
-    </div>
-  );
-};
-export default Userpage;
+                })}
+            </tr>
+        </thead>
+    );
+}
+
+interface EnhancedTableToolbarProps {
+    numSelected: number;
+}
+
+function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
+    const { numSelected } = props;
+
+    return (
+        <Box
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                py: 1,
+                pl: { sm: 2 },
+                pr: { xs: 1, sm: 1 },
+                ...(numSelected > 0 && {
+                    bgcolor: "background.level1",
+                }),
+                borderTopLeftRadius: "var(--unstable_actionRadius)",
+                borderTopRightRadius: "var(--unstable_actionRadius)",
+            }}
+        >
+            {numSelected > 0 ? (
+                <Typography sx={{ flex: "1 1 100%" }} component="div">
+                    {numSelected} selected
+                </Typography>
+            ) : (
+                <Typography
+                    level="body-lg"
+                    sx={{ flex: "1 1 100%", fontWeight: "bold" }}
+                    id="tableTitle"
+                    component="div"
+                >
+                    사용자 정보
+                </Typography>
+            )}
+
+            {numSelected > 0 ? (
+                <Tooltip title="Delete">
+                    <IconButton size="sm" color="danger" variant="solid">
+                        <DeleteIcon />
+                    </IconButton>
+                </Tooltip>
+            ) : (
+                <Tooltip title="Filter list">
+                    <IconButton size="sm" variant="outlined" color="neutral">
+                        <FilterListIcon />
+                    </IconButton>
+                </Tooltip>
+            )}
+        </Box>
+    );
+}
+
+export default function TableSortAndSelectionUsers() {
+    const [rows, rowchange] = useState([]);
+    const [order, setOrder] = React.useState<Order>("asc");
+    const [orderBy, setOrderBy] = React.useState<keyof Userlists>("id");
+    const [selected, setSelected] = React.useState<readonly string[]>([]);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const handleRequestSort = (
+        event: React.MouseEvent<unknown>,
+        property: keyof Userlists
+    ) => {
+        const isAsc = orderBy === property && order === "asc";
+        setOrder(isAsc ? "desc" : "asc");
+        setOrderBy(property);
+    };
+
+    const handleSelectAllClick = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        if (event.target.checked) {
+            const newSelected = rows.map((n: any) => n.id);
+            setSelected(newSelected);
+            return;
+        }
+        setSelected([]);
+    };
+
+    const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+        const selectedIndex = selected.indexOf(id);
+        let newSelected: readonly string[] = [];
+
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+            newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                selected.slice(0, selectedIndex),
+                selected.slice(selectedIndex + 1)
+            );
+        }
+
+        setSelected(newSelected);
+    };
+
+    const handleChangePage = (newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: any, newValue: number | null) => {
+        setRowsPerPage(parseInt(newValue!.toString(), 10));
+        setPage(0);
+    };
+
+    const getLabelDisplayedRowsTo = () => {
+        if (rows.length === -1) {
+            return (page + 1) * rowsPerPage;
+        }
+        return rowsPerPage === -1
+            ? rows.length
+            : Math.min(rows.length, (page + 1) * rowsPerPage);
+    };
+
+    const isSelected = (id: string) => selected.indexOf(id) !== -1;
+
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    useEffect(() => {
+        fetch("http://localhost:8000/users")
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((resp) => {
+                rowchange(resp);
+            })
+            .catch((e) => {
+                console.log(e.message);
+            });
+    }, []);
+    return (
+        <Sheet variant="outlined" sx={{}}>
+            <EnhancedTableToolbar numSelected={selected.length} />
+            <Table
+                aria-labelledby="tableTitle"
+                hoverRow
+                sx={{
+                    "--TableCell-headBackground": "transparent",
+                    "--TableCell-selectedBackground": (theme) =>
+                        theme.vars.palette.success.softBg,
+                    "& thead th:nth-of-type(1)": {
+                        width: "40px",
+                    },
+                    "& thead th:nth-of-type(2)": {
+                        width: "30%",
+                    },
+                    "& tr > *:nth-of-type(n+3)": { textAlign: "left" },
+                }}
+            >
+                <EnhancedTableHead
+                    numSelected={selected.length}
+                    order={order}
+                    orderBy={orderBy}
+                    onSelectAllClick={handleSelectAllClick}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                />
+                <tbody>
+                    {stableSort(rows, getComparator(order, orderBy))
+                        .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row: any, index) => {
+                            const isItemSelected = isSelected(row.id);
+                            const labelId = `enhanced-table-checkbox-${index}`;
+
+                            return (
+                                <tr
+                                    onClick={(event) =>
+                                        handleClick(event, row.id)
+                                    }
+                                    role="checkbox"
+                                    aria-checked={isItemSelected}
+                                    tabIndex={-1}
+                                    key={row.id}
+                                    // selected={isItemSelected}
+                                    style={
+                                        isItemSelected
+                                            ? ({
+                                                  "--TableCell-dataBackground":
+                                                      "var(--TableCell-selectedBackground)",
+                                                  "--TableCell-headBackground":
+                                                      "var(--TableCell-selectedBackground)",
+                                              } as React.CSSProperties)
+                                            : {}
+                                    }
+                                >
+                                    <th scope="row">
+                                        <Checkbox
+                                            checked={isItemSelected}
+                                            slotProps={{
+                                                input: {
+                                                    "aria-labelledby": labelId,
+                                                },
+                                            }}
+                                            sx={{ verticalAlign: "top" }}
+                                        />
+                                    </th>
+                                    <th id={labelId} scope="row">
+                                        {row.id}
+                                    </th>
+                                    <td>{row.name}</td>
+                                    <td>{row.phoneNum}</td>
+                                    <td>{row.adress}</td>
+                                </tr>
+                            );
+                        })}
+                    {emptyRows > 0 && (
+                        <tr
+                            style={
+                                {
+                                    height: `calc(${emptyRows} * 40px)`,
+                                    "--TableRow-hoverBackground": "transparent",
+                                } as React.CSSProperties
+                            }
+                        >
+                            <td colSpan={5} aria-hidden />
+                        </tr>
+                    )}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colSpan={5}>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 2,
+                                    justifyContent: "flex-end",
+                                }}
+                            >
+                                <FormControl orientation="horizontal" size="sm">
+                                    <FormLabel>Rows per page:</FormLabel>
+                                    <Select
+                                        onChange={handleChangeRowsPerPage}
+                                        value={rowsPerPage}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <Option value={5}>5</Option>
+                                        <Option value={10}>10</Option>
+                                        <Option value={25}>25</Option>
+                                    </Select>
+                                </FormControl>
+                                <Typography
+                                    textAlign="center"
+                                    sx={{ minWidth: 80 }}
+                                >
+                                    {labelDisplayedRows({
+                                        from:
+                                            rows.length === 0
+                                                ? 0
+                                                : page * rowsPerPage + 1,
+                                        to: getLabelDisplayedRowsTo(),
+                                        count:
+                                            rows.length === -1
+                                                ? -1
+                                                : rows.length,
+                                    })}
+                                </Typography>
+                                <Box sx={{ display: "flex", gap: 1 }}>
+                                    <IconButton
+                                        size="sm"
+                                        color="neutral"
+                                        variant="outlined"
+                                        disabled={page === 0}
+                                        onClick={() =>
+                                            handleChangePage(page - 1)
+                                        }
+                                        sx={{ bgcolor: "background.surface" }}
+                                    >
+                                        <KeyboardArrowLeftIcon />
+                                    </IconButton>
+                                    <IconButton
+                                        size="sm"
+                                        color="neutral"
+                                        variant="outlined"
+                                        disabled={
+                                            rows.length !== -1
+                                                ? page >=
+                                                  Math.ceil(
+                                                      rows.length / rowsPerPage
+                                                  ) -
+                                                      1
+                                                : false
+                                        }
+                                        onClick={() =>
+                                            handleChangePage(page + 1)
+                                        }
+                                        sx={{ bgcolor: "background.surface" }}
+                                    >
+                                        <KeyboardArrowRightIcon />
+                                    </IconButton>
+                                </Box>
+                            </Box>
+                        </td>
+                    </tr>
+                </tfoot>
+            </Table>
+        </Sheet>
+    );
+}
