@@ -4,19 +4,22 @@
       "id": "admin",
       "password": "1234",
       "name": "관리자",
-      "email": "1234@naver.com"
+      "email": "1234@naver.com",
+      "role": "admin"
     },
     {
       "id": "master",
       "password": "1234",
       "name": "마스터",
-      "email": "master@naver.com"
+      "email": "master@naver.com",
+      "role": "admin"
     },
     {
       "id": "test",
       "password": "1234",
       "name": "테스트",
-      "email": "test@naver.com"
+      "email": "test@naver.com",
+      "role": "user"
     }
   ],
   "users": [
