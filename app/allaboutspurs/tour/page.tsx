@@ -13,14 +13,13 @@ import "../../globals.css";
 export default function Tour() {
   return (
     <Container className="tab" sx={{ minWidth: "sm", maxWidth: "xl" }}>
-      <Box sx={{ m: 10 }} display="flex">
+      <Box sx={{ m: 10, height: "66.5vh" }}>
         <Grid
           container
           direction="column"
           justifyContent="center"
           alignItems="center"
-          spacing={0}
-        >
+          spacing={0}>
           <Grid>
             <Image
               src="/tour.png"
@@ -53,8 +52,7 @@ export default function Tour() {
                   fontWeight: "bold",
                   width: 225,
                   height: 55,
-                }}
-              >
+                }}>
                 ENTER
               </Button>
             </Link>
