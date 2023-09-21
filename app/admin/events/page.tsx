@@ -25,6 +25,7 @@ interface EventtsList {
     name: string;
     phoneNum: string;
     gender: string;
+    brith: string;
     adress: string;
     reason1: string;
     reason2: string;
@@ -35,6 +36,7 @@ function Events(
     name: string,
     phoneNum: string,
     gender: string,
+    brith: string,
     adress: string,
     reason1: string,
     reason2: string,
@@ -46,6 +48,7 @@ function Events(
         phoneNum,
         gender,
         adress,
+        brith,
         reason1,
         reason2,
         reason3,
@@ -140,6 +143,12 @@ const headCells: readonly HeadCell[] = [
         numeric: true,
         disablePadding: false,
         label: "주소",
+    },
+    {
+        id: "brith",
+        numeric: true,
+        disablePadding: false,
+        label: "생년월일",
     },
     {
         id: "reason1",
@@ -485,6 +494,7 @@ export default function TableSortAndSelectionEvents() {
                                     <td>{row.phoneNum}</td>
                                     <td>{row.gender}</td>
                                     <td>{row.adress}</td>
+                                    <td>{row.brith}</td>
                                     <td>{row.reason1}</td>
                                     <td>{row.reason2}</td>
                                     <td>{row.reason3}</td>
@@ -500,13 +510,13 @@ export default function TableSortAndSelectionEvents() {
                                 } as React.CSSProperties
                             }
                         >
-                            <td colSpan={9} aria-hidden />
+                            <td colSpan={10} aria-hidden />
                         </tr>
                     )}
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colSpan={9}>
+                        <td colSpan={10}>
                             <Box
                                 sx={{
                                     display: "flex",
