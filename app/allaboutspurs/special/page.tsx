@@ -6,7 +6,6 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import ReactPlayer from "react-player";
 
 const Item = styled(Box)(({ theme }) => ({
