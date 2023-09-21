@@ -6,13 +6,13 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "@mui/material/Link";
 import Notice from "./notice/page";
-import Special from "./allaboutspurs/special/page copy";
+import Special from "./allaboutspurs/special/page";
 import Grid from "@mui/material/Grid";
 
 export default function Home() {
   return (
     <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-      <Box sx={{ marginTop: 5, marginBottom: 30 }}>
+      <Box sx={{ marginY: 5 }}>
         <Box sx={{ p: 2 }}>
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             이벤트
@@ -44,7 +44,7 @@ export default function Home() {
         <Box
           sx={{
             display: "flex",
-            width: "100%"
+            width: "100%",
           }}>
           <Notice />
         </Box>
