@@ -14,7 +14,10 @@ export default async function adminpage() {
     return (
       <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
         <Box sx={{ marginY: 5 }}>
-          <Typography variant="h3" textAlign={"center"} mb={"20"}>
+          <Typography
+            variant="h3"
+            textAlign={"center"}
+            sx={{ fontWeight: "Bold" }}>
             관리자 페이지 접근 권한이 없습니다.
           </Typography>
         </Box>
