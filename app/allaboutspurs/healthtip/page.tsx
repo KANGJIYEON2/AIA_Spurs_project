@@ -33,7 +33,7 @@ const MindVideoPath = [
 
 const TipVideo = ({ path }: { path: string }) => {
   return (
-    <Grid item xs={3} sx={{ m: 1 }}>
+    <Grid item xs={12} sm={4} md={3} sx={{ m: 1 }}>
       <Item>
         <ReactPlayer url={path} width="250px" height="150px" controls={true} />
       </Item>
