@@ -11,6 +11,7 @@ import { Alert } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { NextPage } from "next";
 import { signIn } from "next-auth/react";
+import Typography from "@mui/material/Typography";
 
 const theme = createTheme({
   palette: {
@@ -65,6 +66,14 @@ const Login2: NextPage = (props): JSX.Element => {
         justifyContent="center"
         alignItems="center"
         sx={{ m: 5, height: "75vh" }}>
+        <Grid>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: "bold", color: "#001B3F" }}>
+            ※ 관리자 로그인 화면입니다. ※
+          </Typography>
+        </Grid>
+        <br />
         <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
           <Box>
             <TextField
