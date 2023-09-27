@@ -13,7 +13,7 @@ import "../../globals.css";
 export default function Tour() {
   return (
     <Container className="tab" sx={{ minWidth: "sm", maxWidth: "xl" }}>
-      <Box sx={{ m: 10, height: "66.5vh" }}>
+      <Box sx={{ m: 10 }}>
         <Grid
           container
           direction="column"
