@@ -5,13 +5,24 @@ import { Notices } from "@/interface/list";
 import getNotice from "@/lib/getNotice";
 import Card from "@mui/joy/Card";
 import Link from "next/link";
-import { Box, Container, Paper, Stack, Typography } from "@mui/material";
+import {
+    Box,
+    Container,
+    IconButton,
+    Paper,
+    Stack,
+    Typography,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useRouter } from "next/navigation";
+
 type Params = {
     params: { id: string };
 };
 
 export default function NoticePage({ params: { id } }: Params) {
     const [notice, setnotice] = useState<Notices | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchNoticeData() {
@@ -23,41 +34,45 @@ export default function NoticePage({ params: { id } }: Params) {
     }, [id]);
 
     if (!notice) {
-        return <div>데이터가없다</div>;
+        return <div>데이터가 없습니다.</div>;
     }
+
+    const handleGoBack = () => {
+        router.push("/notice");
+    };
+
     return (
         <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
             <Box
                 sx={{
-                    display: "flex",
-                    minHeight: "100vh",
-                    flexDirection: "column",
+                    mt: 3,
+                    mb: 3,
+                    minHeight: "calc(100vh - 45px)",
                 }}
             >
-                <Link
-                    href={"/notice"}
-                    style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                    }}
-                >
-                    <Typography variant="h3" textAlign={"center"} mb={"20"}>
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                    <IconButton
+                        color="primary"
+                        aria-label="뒤로 가기"
+                        onClick={handleGoBack}
+                        sx={{ marginRight: 1 }}
+                    >
+                        <ArrowBackIcon />
+                    </IconButton>
+                    <Typography variant="h5" textAlign={"center"}>
                         AIA-SPURS 공지사항
                     </Typography>
-                </Link>
-                <Stack spacing={1}>
-                    <Card size="sm">
-                        {" "}
-                        <Typography variant="h5">{notice.title}</Typography>
+                </Box>
+                <Stack spacing={2} sx={{ alignItems: "center" }}>
+                    <Card size="sm" sx={{ width: "100%" }}>
+                        <Typography variant="h6" textAlign="center">
+                            {notice.title}
+                        </Typography>
                     </Card>
-                    <Paper
-                        sx={{
-                            width: "100%",
-                            alignItems: "center",
-                            justifyItems: "center",
-                        }}
-                    >
-                        <Typography variant="h6">{notice.explain}</Typography>
+                    <Paper sx={{ width: "90%", p: 2 }}>
+                        <Typography variant="h6" textAlign="center">
+                            {notice.explain}
+                        </Typography>
                     </Paper>
                 </Stack>
             </Box>

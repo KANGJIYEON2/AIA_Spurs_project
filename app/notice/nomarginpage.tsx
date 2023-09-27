@@ -52,7 +52,7 @@ export default function UseNotices() {
                 maxWidth: "xl",
             }}
         >
-            <Box sx={{ marginTop: 5, marginBottom: 60 }}>
+            <Box sx={{ minWidth: "sm", maxWidth: "xl" }}>
                 <Typography
                     variant="h4"
                     sx={{ fontWeight: "bold" }}

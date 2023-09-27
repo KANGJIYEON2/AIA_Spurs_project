@@ -139,12 +139,6 @@ const headCells: readonly HeadCell[] = [
         label: "성별",
     },
     {
-        id: "adress",
-        numeric: true,
-        disablePadding: false,
-        label: "주소",
-    },
-    {
         id: "brith",
         numeric: true,
         disablePadding: false,
@@ -493,7 +487,6 @@ export default function TableSortAndSelectionEvents() {
                                     <td>{row.name}</td>
                                     <td>{row.phoneNum}</td>
                                     <td>{row.gender}</td>
-                                    <td>{row.adress}</td>
                                     <td>{row.brith}</td>
                                     <td>{row.reason1}</td>
                                     <td>{row.reason2}</td>
@@ -510,13 +503,13 @@ export default function TableSortAndSelectionEvents() {
                                 } as React.CSSProperties
                             }
                         >
-                            <td colSpan={10} aria-hidden />
+                            <td colSpan={9} aria-hidden />
                         </tr>
                     )}
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colSpan={10}>
+                        <td colSpan={9}>
                             <Box
                                 sx={{
                                     display: "flex",
