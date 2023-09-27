@@ -46,14 +46,24 @@ export default function UseNotices() {
     }, []);
 
     return (
-        <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-            <Box sx={{ marginTop: 5, marginBottom: 30 }}>
-                <Typography variant="h3" textAlign={"center"} mb={"20"}>
+        <Container
+            sx={{
+                minWidth: "sm",
+                maxWidth: "xl",
+            }}
+        >
+            <Box sx={{ minWidth: "sm", maxWidth: "xl" }}>
+                <Typography
+                    variant="h4"
+                    sx={{ fontWeight: "bold" }}
+                    textAlign={"left"}
+                    mb={"10"}
+                >
                     AIA-SPURS 공지사항
                 </Typography>
                 <Paper
                     sx={{
-                        width: "100%",
+                        width: "92%",
                         alignItems: "center",
                         justifyItems: "center",
                     }}
