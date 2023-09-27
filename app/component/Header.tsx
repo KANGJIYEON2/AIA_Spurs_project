@@ -66,15 +66,13 @@ const Header = () => {
       xs={8}
       sx={{ display: { xs: "none", md: "flex" } }}
       container
-      justifyContent="center"
-    >
+      justifyContent="center">
       <Item>
         <Stack
           direction="row"
           justifyContent="space-around"
           alignItems="center"
-          spacing={{ md: 3, lg: 4, xl: 5 }}
-        >
+          spacing={{ md: 3, lg: 4, xl: 5 }}>
           {paths.map(({ name, link }) => DisplayMenu(name, link))}
         </Stack>
       </Item>
@@ -84,7 +82,15 @@ const Header = () => {
   const DisplayLogin = (
     <Grid item xs={2} container justifyContent="center">
       <Item>
-        <MenuItem onClick={() => (session ? signOut() : signIn())}>
+        <MenuItem
+          onClick={() => {
+            if (session) {
+              signOut();
+              window.alert("로그아웃이 실행됩니다.");
+            } else {
+              signIn();
+            }
+          }}>
           <Typography sx={{ fontSize: 14 }} color="#fafafa">
             {session ? "LOGOUT" : "LOGIN"}
           </Typography>
@@ -99,14 +105,12 @@ const Header = () => {
       container
       direction="row"
       justifyContent="space-between"
-      alignItems="center"
-    >
+      alignItems="center">
       <Box sx={{ display: { xs: "flex", md: "none" } }}>
         <IconButton
           size="large"
           onClick={handleOpenNavMenu}
-          sx={{ color: "#fafafa" }}
-        >
+          sx={{ color: "#fafafa" }}>
           <MenuIcon />
         </IconButton>
         <Menu
@@ -125,20 +129,17 @@ const Header = () => {
           onClose={handleCloseNavMenu}
           sx={{
             display: { xs: "block", md: "none" },
-          }}
-        >
+          }}>
           {paths.map(({ name, link }) => (
             <MenuItem key={link}>
               <Link
                 href={link}
-                style={{ textDecoration: "none", color: "#001B3F" }}
-              >
+                style={{ textDecoration: "none", color: "#001B3F" }}>
                 <Typography
                   textAlign="center"
                   sx={{
                     fontSize: 12,
-                  }}
-                >
+                  }}>
                   {name}{" "}
                 </Typography>
               </Link>
