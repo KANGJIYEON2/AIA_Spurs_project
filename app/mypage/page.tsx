@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -24,6 +25,37 @@ const Mypage = () => {
   console.log("Session Data:", session);
   const userProfileImg = session?.user?.image as string;
 
+  const [event, setEvent] = useState([]);
+  const [userEventName, setUserEventName] = useState("");
+  const [userEvent, setUserEvent] = useState({
+    name: "",
+    birth: "",
+    phoneNum: "",
+    gender: "",
+    adress: "",
+    reason1: "",
+    reason2: "",
+    reason3: "",
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:8000/events")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Event Data:", data);
+        setEvent(data);
+        const userEventData = data.find(
+          (event: any) => event.name === session?.user?.name
+        );
+        console.log("User Event:", userEventData);
+        if (userEventData) {
+          setUserEventName(userEventData.name);
+          setUserEvent(userEventData);
+        }
+      })
+      .catch((error) => console.error("Error fetching events:", error));
+  }, [session]);
+
   return (
     <Container sx={{ minWidth: "sm", maxWidth: "lg", marginLeft: 15 }}>
       <Typography
@@ -44,6 +76,27 @@ const Mypage = () => {
           <br />
           <Typography variant="h6">Email : {session?.user?.email}</Typography>
         </Box>
+      </Box>
+      <Box sx={{ marginBottom: 10 }}>
+        <Grid>
+          <Typography variant="h4" sx={{ marginLeft: 5, fontWeight: "Bold" }}>
+            이벤트 신청 내역
+          </Typography>
+        </Grid>
+        <Grid sx={{ marginTop: 1, marginLeft: 7 }}>
+          <Typography>이름: {userEventName}</Typography>
+          {userEvent && userEvent.name && (
+            <>
+              <Typography>생년월일: {userEvent.birth}</Typography>
+              <Typography>휴대폰번호: {userEvent.phoneNum}</Typography>
+              <Typography>성별: {userEvent.gender}</Typography>
+              <Typography>주소: {userEvent.adress}</Typography>
+              <Typography>응답1: {userEvent.reason1}</Typography>
+              <Typography>응답2: {userEvent.reason2}</Typography>
+              <Typography>응답3: {userEvent.reason3}</Typography>
+            </>
+          )}
+        </Grid>
       </Box>
       <Typography variant="h4" sx={{ marginLeft: 5, fontWeight: "Bold" }}>
         개인정보수집처리동의
