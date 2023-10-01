@@ -8,6 +8,10 @@ import { text } from "stream/consumers";
 
 const ThemeOptions: ThemeOptions = {
     palette: {
+        primary:{
+            main: "#001b3f", 
+            contrastText: "#FFFFFF",
+        },
         background: {
             default:"white",
         },

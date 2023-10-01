@@ -1,20 +1,20 @@
+import { Box, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Comment = ({ comment, replies }: any) => {
     return (
-        <div className="comment">
-            <div className="comment-right-part">
-                <div className="comment-content">
-                    <div className="comment-author">
-                        {""}
+        <Box className="comment">
+            <Box className="comment-right-part">
+                <Box className="comment-content" sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <AccountCircleIcon />
-                        {comment.username}
-                    </div>
-                    <div>{comment.createdAt}</div>
-                </div>
-                <div className="comment-text"> {comment.body} </div>
+                        <Box>{comment.username}</Box>
+                        <Box sx={{ marginLeft: '10px' }}>{comment.createdAt}</Box>
+                    </Box>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', marginTop: '8px' }}>{comment.body}</Typography>
+                </Box>
                 {replies.length > 0 && (
-                    <div className="replies">
+                    <Box className="replies">
                         {replies.map((reply: any) => (
                             <Comment
                                 comment={reply}
@@ -22,10 +22,10 @@ const Comment = ({ comment, replies }: any) => {
                                 replies={[]}
                             />
                         ))}
-                    </div>
+                    </Box>
                 )}
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
