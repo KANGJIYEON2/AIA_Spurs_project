@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Faqs } from "@/interface/list";
 import getAllFaqs from "@/lib/getAllFaqs";
-import Link from "next/link";
 import {
     Box,
     Container,
@@ -22,42 +21,58 @@ export default function UseFaqs() {
     const columns = [
         { id: "id", name: "ID" },
         { id: "title", name: "제목" },
-        { id: "data", name: "날짜" },
+        { id: "date", name: "날짜" },
     ];
 
     const [faqs, setFaqs] = useState<Faqs[]>([]);
-    const [page, pagechange] = useState(0);
-    const [rowperpage, rowperpagechange] = useState(10);
-    const handlechangepage = (event: any, newpage: any) => {
-        pagechange(newpage);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [selectedFaqId, setSelectedFaqId] = useState<number | null>(null);
+
+    const handleFaqTitleClick = (faqId: number) => {
+        setSelectedFaqId(selectedFaqId === faqId ? null : faqId);
     };
-    const handleRowsPerPage = (event: any) => {
-        rowperpagechange(+event.target.value);
-        pagechange(0);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
     };
+
+    const handleRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
     useEffect(() => {
         async function fetchFaqs() {
             const data = await getAllFaqs();
             setFaqs(data);
-            console.log(data);
         }
-
         fetchFaqs();
     }, []);
 
     return (
-        <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-            <Box sx={{ marginTop: 5, marginBottom: 30 }}>
-                <Typography variant="h3" textAlign={"center"} mb={"20"}>
-                    AIA-SPURS FAQ
-                </Typography>
-                <Paper
-                    sx={{
-                        width: "100%",
-                        alignItems: "center",
-                        justifyItems: "center",
-                    }}
-                >
+        <Container
+        sx={{
+            minWidth: "sm",
+            maxWidth: "xl",
+        }}
+    >
+        <Box sx={{ marginTop: 5, marginBottom: 60 }}>
+            <Typography
+                variant="h4"
+                sx={{ fontWeight: "bold" }}
+                textAlign={"left"}
+                mb={"10"}
+            >
+                AIA-SPURS FAQ
+            </Typography>
+            <Paper
+                sx={{
+                    width: "92%",
+                    alignItems: "center",
+                    justifyItems: "center",
+                }}
+            >
                     <TableContainer sx={{ maxHeight: 600 }}>
                         <Table stickyHeader>
                             <TableHead>
@@ -71,66 +86,41 @@ export default function UseFaqs() {
                             </TableHead>
                             <TableBody>
                                 {faqs &&
-                                    faqs
-                                        .slice(
-                                            page * rowperpage,
-                                            page * rowperpage + rowperpage
-                                        )
-                                        .map((faq, i) => (
-                                            <TableRow key={i}>
+                                    faqs.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((faq, i) => (
+                                        <>
+                                            <TableRow key={i} style={selectedFaqId === faq.id ? { backgroundColor: "#f2f2f2" } : {}}>
                                                 {columns.map((column) => {
-                                                    let value = faq[column.id];
+                                                    const value = faq[column.id];
                                                     if (column.id === "id") {
                                                         return (
-                                                            <TableCell
-                                                                key={column.id}
-                                                            >
-                                                                {page *
-                                                                    rowperpage +
-                                                                    i +
-                                                                    1}
+                                                            <TableCell key={column.id}>
+                                                                {page * rowsPerPage + i + 1}
                                                             </TableCell>
                                                         );
-                                                    } else if (
-                                                        column.id === "title"
-                                                    ) {
+                                                    } else if (column.id === "title") {
                                                         return (
-                                                            <>
-                                                                <TableCell
-                                                                    key={
-                                                                        column.id
-                                                                    }
-                                                                >
-                                                                    <Link
-                                                                        href={`/faqlist/${faq.id}`}
-                                                                        style={{
-                                                                            textDecoration:
-                                                                                "none",
-                                                                            color: "inherit",
-                                                                        }}
-                                                                    >
-                                                                        {value}
-                                                                    </Link>
-                                                                </TableCell>
-                                                                <TableCell>
-                                                                    {faq.date}{" "}
-                                                                </TableCell>
-                                                            </>
+                                                            <TableCell key={column.id} onClick={() => handleFaqTitleClick(faq.id)}>
+                                                                {value}
+                                                            </TableCell>
                                                         );
-                                                    } else if (
-                                                        column.id !== "date"
-                                                    ) {
+                                                    } else {
                                                         return (
-                                                            <TableCell
-                                                                key={column.id}
-                                                            >
+                                                            <TableCell key={column.id}>
                                                                 {value}
                                                             </TableCell>
                                                         );
                                                     }
                                                 })}
                                             </TableRow>
-                                        ))}
+                                            {selectedFaqId === faq.id && (
+                                                <TableRow>
+                                                 <TableCell colSpan={columns.length} style={{ textAlign: "center" }}>
+                                                        {faq.contents}
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </>
+                                    ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -138,11 +128,11 @@ export default function UseFaqs() {
                         rowsPerPageOptions={[5, 10, 25]}
                         page={page}
                         count={faqs.length}
-                        rowsPerPage={rowperpage}
+                        rowsPerPage={rowsPerPage}
                         component="div"
-                        onPageChange={handlechangepage}
+                        onPageChange={handleChangePage}
                         onRowsPerPageChange={handleRowsPerPage}
-                    ></TablePagination>
+                    />
                 </Paper>
             </Box>
         </Container>
