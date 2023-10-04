@@ -17,41 +17,13 @@ import { Alert, AlertTitle } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 
 export default function EventTabs() {
-    const router = useRouter();
     const [value, setValue] = React.useState("1");
-    const { data: session, status } = useSession();
-    const [openAlert, setOpenAlert] = useState(false);
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
-    const handleAlertClose = () => {
-        setOpenAlert(false);
-        router.push("/api/auth/login");
-    };
-
-    useEffect(() => {
-        if (status === "loading") {
-            return;
-        }
-
-        if (!session) {
-            setOpenAlert(true);
-        }
-    }, [session, router, status]);
 
     return (
         <Container sx={{ minWidth: "sm", maxWidth: "xl" }}>
-            <Dialog
-                open={openAlert}
-                onClose={handleAlertClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <Alert severity="error" onClose={handleAlertClose}>
-                    <AlertTitle>경고!</AlertTitle>
-                    이벤트 참여시 <strong>로그인필요</strong>
-                </Alert>
-            </Dialog>
             <Box sx={{ width: "100%", typography: "body1" }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
