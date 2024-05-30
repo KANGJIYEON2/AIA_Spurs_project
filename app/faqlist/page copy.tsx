@@ -35,7 +35,9 @@ const Notice = () => {
   const [openModule, setOpenModule] = React.useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/faqlist")
+    fetch(
+      "https://my-json-server.typicode.com/KANGJIYEON2/AIA_Spurs_project/faqlist"
+    )
       .then((resp) => {
         return resp.json();
       })
@@ -88,7 +90,8 @@ const Notice = () => {
             rowsPerPage={rowperpage}
             component="div"
             onPageChange={handlechangepage}
-            onRowsPerPageChange={handleRowsPerPage}></TablePagination>
+            onRowsPerPageChange={handleRowsPerPage}
+          ></TablePagination>
         </Paper>
       </Box>
     </Container>
